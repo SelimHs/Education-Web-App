@@ -1,0 +1,28 @@
+/* styles.css */
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+}
+
+table {
+    width: 80%; /* Réduire la largeur du tableau */
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    border: 2px solid black; /* Bordure noire */
+    border-spacing: 5px; /* Espacement entre les cellules */
+}
+
+th, td {
+    padding: 10px; /* Augmentation du remplissage */
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #f2f2f2;
+}
