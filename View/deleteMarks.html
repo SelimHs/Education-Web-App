@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8">
@@ -21,88 +20,67 @@
 
 
 	<body>
-		
-		<div id="site-content">
-			<header class="site-header">
-				<div class="primary-header">
+            
+            <div id="site-content">
+                <header class="site-header">
+                    <div class="primary-header">
+                        <div class="container">
+                            <a href="index.html" id="branding">
+                                <img src="images/logo.png" alt="Lincoln high School">
+                                <h1 class="site-title">Wadha7li</h1>
+                            </a> <!-- #branding -->
+                            
+                            <div class="main-navigation">
+                                <button type="button" class="menu-toggle"><i class="fa fa-bars"></i></button>
+                                <ul class="menu">
+                                    <li class="menu-item"><a href="index.html">Home</a></li>
+                                    <li class="menu-item "><a href="course.html">Courses</a></li>
+                                    <li class="menu-item"><a href="student.html">Students</a></li>
+                                    <li class="menu-item"><a href="event.html">Events</a></li>
+                                    <li class="menu-item"><a href="contactEtudiant.html">Review</a></li>
+                                    <li class="menu-item current-menu-item"><a href="contactProf.html">Marks</a></li>
+                                </ul> <!-- .menu -->
+                            </div> <!-- .main-navigation -->
+
+                            <div class="mobile-navigation"></div>
+                        </div> <!-- .container -->
+                    </div> <!-- .primary-header -->
+
+                    <div class="page-title">
+                        <div class="container">
+                            <h2>Your opinion matters!</h2>
+                            <li class="menu-item"><a href="viewMarks.html">View marks</a></li>
+                            <li class="menu-item "><a href="updateMarks.html">Update marks</a></li>
+                            <li class="menu-item"><a href="student.html">Delete mark</a></li>
+                        </div>
+                    </div>
+                </header>
+            </div>
+
+			<main class="main-content">
+				<div class="fullwidth-block inner-content">
 					<div class="container">
-						<a href="index.html" id="branding">
-							<img src="images/logo.png" alt="Lincoln high School">
-							<h1 class="site-title">Wadha7li</h1>
-						</a> <!-- #branding -->
-						
-						<div class="main-navigation">
-							<button type="button" class="menu-toggle"><i class="fa fa-bars"></i></button>
-							<ul class="menu">
-								<li class="menu-item"><a href="index.html">Home</a></li>
-								<li class="menu-item "><a href="course.html">Courses</a></li>
-								<li class="menu-item"><a href="student.html">Students</a></li>
-								<li class="menu-item"><a href="event.html">Events</a></li>
-								<li class="menu-item"><a href="contactEtudiant.html">Review</a></li>
-								<li class="menu-item current-menu-item"><a href="contactProf.html">Marks</a></li>
-							</ul> <!-- .menu -->
-						</div> <!-- .main-navigation -->
-
-						<div class="mobile-navigation"></div>
-					</div> <!-- .container -->
-				</div> <!-- .primary-header -->
-
-				<div class="page-title">
-					<div class="container">
-						<h2>Your opinion matters!</h2>
-						<li class="menu-item"><a href="viewMarks.html">View marks</a></li>
-						<li class="menu-item "><a href="updateMarks.html">Update marks</a></li>
-						<li class="menu-item"><a href="deleteMarks.html">Delete mark</a></li>
-					</div>
-				</div>
-			</header>
-		</div>
-
-		<main class="main-content">
-			<div class="fullwidth-block inner-content">
-				<div class="container">
-					<div class="row">
-						<div class="col-md-6">
-							<form action="addResultat.php" class="contact-form" method="post">
-								<p>
-									<label for="name">Note CC </label>
-									<span class="control"><input type="number" name="noteCC" min="0" max="20" required></span>
-								</p>
-								<p>
-									<label for="name">Note Examen </label>
-									<span class="control"><input type="number" name="noteExamen" min="0" max="20" required></span>
-								</p>
-								<p>
-									<label for="message">Remark</label>
-									<span class="control"><textarea name="appreciation" placeholder="Write down your thoughts"></textarea></span>
-								</p>
-								<p class="text-right">
-									<input type="submit" value="Submit Mark">
-								</p>
-							</form>
-							<!--PHP FOR FORM GOES HERE PHP HERE PHP HERE PHP HERE PHP HERE PHP HERE PHP HERE PHP HERE -->
-						</div>
-						<div class="col-md-6">
-							<div class="contact-info">
-								<address>
-									<strong>Address</strong>
-									<p>Wadha7li INC. <br>Zone Industrielle Chotrana II <br>Ariana Tunis، 2083</p>
-								</address>
-								<div class="contact">
-									<strong>Contact</strong>
+						<div class="row">
+							<div class="col-md-6">
+								<form action="deleteMarks.php" class="contact-form" method="post">
 									<p>
-										<a href="tel:532930098891">(+216) 52 621 233 </a>
-										<a href="mailto:office@companyname.com">Selim.Hassani@esprit.tn</a> <br>
-														
+										<label for="name">ID Resultat </label>
+										<span class="control"><input type ="number" name="idResultat" required></span>
 									</p>
-								</div>
+									<p class="text-right">
+										<input type="submit" value="Delete Mark">
+									</p>
+								</form>
+								<!--PHP FOR FORM GOES HERE PHP HERE PHP HERE PHP HERE PHP HERE PHP HERE PHP HERE PHP HERE -->
 							</div>
+							
 						</div>
 					</div>
-				</div>
-			</div> <!-- .fullwidth-block -->
-		</main>
+				</div> <!-- .fullwidth-block -->
+			</main>
 
+				
+				
 		<footer class="site-footer">
 			<div class="container">
 				<div class="row">

@@ -2426,5 +2426,9 @@ article .featured-image img {
   color: #777c73;
   line-height: 1.5;
 }
+.marksForm{
+  width: 30%;
+  margin-left: 1rem;
+}
 
 /*# sourceMappingURL=style.css.map */

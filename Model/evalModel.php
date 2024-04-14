@@ -42,7 +42,7 @@ class evalCours{
 }
 
 class resultat{
-    private int $idResultat;
+    private int $idResultat=0;
     //private int $idProf;
     //private int $idUser;
     private float $noteCC=0;
