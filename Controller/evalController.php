@@ -1,6 +1,6 @@
 <?php
-require '../broCodeCourse/config.php';
-require '../broCodeCourse/evalModel.php';
+require_once '../config.php';
+require_once '../Model/evalModel.php';
 
     //get all evaluations from evalcours
      function getAllEval(){
@@ -88,19 +88,20 @@ require '../broCodeCourse/evalModel.php';
         }
     }
 //add resultat
-    function ajouterResultat($resultat){
+    /*function ajouterResultat($resultat){
         $db=config::getConnexion();
-        $idProf=$resultat->getIdProf();
+        //$idUser=100;
+        //$idProf=$resultat->getIdProf();
         $noteCC=$resultat->getNoteCC();
         $noteExamen=$resultat->getNoteExamen();
         $appreciation=$resultat->getAppreciation();
         try {
-        $query=$db->prepare("INSERT INTO resultat (idProf, noteCC, noteExamen, appreciation)
-        VALUES ('$idProf', '$noteCC', '$noteExamen', '$appreciation')");
+        $query=$db->prepare("INSERT INTO resultat (noteCC, noteExamen, appreciation)
+        VALUES ( '$noteCC', '$noteExamen', '$appreciation')");
         $query->execute();
         } catch(PDOException $e)
         {$e->getMessage();}
-}
+}*/
 //update resultat
     function updateResultat($idResultat, $idProf, $noteCC, $noteExamen, $appreciation){
         $db=config::getConnexion();
@@ -129,5 +130,21 @@ require '../broCodeCourse/evalModel.php';
 
 
 
-
+   /* function createResultat($resultat) {
+        $conn = config::getConnexion();
+        try {
+            $sql = "INSERT INTO resultat (idProf,idUser,noteCC,noteExamen,appreciation) VALUES (:idProf,:idUser, :noteCC, :noteExamen, :appreciation)";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':idUser', $idUSer);
+            $stmt->bindParam(':idProf', $idProf);
+            $stmt->bindParam(':noteCC', $noteCC);
+            $stmt->bindParam(':noteExamen', $noteExamen);
+            $stmt->bindParam(':appreciation', $appreciation);
+            $stmt->execute();
+            return true;
+        } catch(PDOException $e) {
+            echo "Error: " . $e->getMessage();
+            return false;
+        } 
+        }*/
 ?>

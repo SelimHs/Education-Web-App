@@ -43,10 +43,21 @@ class evalCours{
 
 class resultat{
     private int $idResultat;
-    private int $idProf;
-    private float $noteCC;
-    private float $noteExamen;
-    private string $appreciation;
+    //private int $idProf;
+    //private int $idUser;
+    private float $noteCC=0;
+    private float $noteExamen=0;
+    private string $appreciation="";
+
+
+    
+   public function _construct(int $idResultat, float $noteCC, float $noteExamen, string $appreciation){
+    $this->idResultat=$idResultat;
+    $this->noteCC=$noteCC;
+    $this->noteExamen=$noteExamen;
+    $this->appreciation=$appreciation;
+    }
+
 
     public function getIdResultat():float{
         return $this->idResultat;
@@ -54,13 +65,21 @@ class resultat{
     public function setIdResultat($idResultat){
         $this->idResultat=$idResultat;
     }
+///////////////
+    /*public function getIdUser():float{
+        return $this->idUser;
+    }
+    public function setIdUser($idUser){
+        $this->idUser=$idUser;
+    }
+////////////////////
 
     public function getIdProf():int{
         return $this->idProf;
     }
     public function setIdProf($idProf){
         $this->idProf=$idProf;
-    }
+    }*/
 
     public function getNoteCC():float{
         return $this->noteCC;

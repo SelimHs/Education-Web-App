@@ -60,22 +60,22 @@
 				<div class="container">
 					<div class="row">
 						<div class="col-md-6">
-							<form action="#" class="contact-form" method="post">
+							<form action="addResultat.php" class="contact-form" method="post">
 								<p>
-									<label for="name">Result ID</label>
-									<span class="control"><input type="number" id="idResultat" required></span>
+									<label for="name">Student ID</label>
+									<span class="control"><input type="number" name="idEtudiant" ></span>
 								</p>
 								<p>
 									<label for="name">Note CC </label>
-									<span class="control"><input type="number" id="noteCC" min="0" max="20" required></span>
+									<span class="control"><input type="number" name="noteCC" min="0" max="20" required></span>
 								</p>
 								<p>
 									<label for="name">Note Examen </label>
-									<span class="control"><input type="number" id="noteExamen" min="0" max="20" required></span>
+									<span class="control"><input type="number" name="noteExamen" min="0" max="20" required></span>
 								</p>
 								<p>
 									<label for="message">Remark</label>
-									<span class="control"><textarea id="appreciation" placeholder="Write down your thoughts"></textarea></span>
+									<span class="control"><textarea name="appreciation" placeholder="Write down your thoughts"></textarea></span>
 								</p>
 								<p class="text-right">
 									<input type="submit" value="Submit Mark">
