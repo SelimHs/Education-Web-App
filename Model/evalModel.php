@@ -1,15 +1,18 @@
 <?php
-class evalCours{
+class evalFormation{
     private int $idEval;
-    public string $emailEleve;
-    public int $satisfaction;
-    public string $remarqEval;
+    private int $idProf;
+    private int $satisfaction;
+    private string $remarqEval;
+    private string $nomCours;
 
-    public function _construct(int $idEval, string $emailEleve, int $satisfaction, string $remarqEval){
+    public function _construct(int $idEval, int $idProf, int $satisfaction, string $remarqEval, string $nomCours){
         $this->idEval=$idEval;
-        $this->emailEleve=$emailEleve;
+        $this->idProf=$idProf;
         $this->satisfaction=$satisfaction;
         $this->remarqEval=$remarqEval;
+        $this->nomCours=$nomCours;
+
     }
 
     public function getIdEval():int{
@@ -19,11 +22,11 @@ class evalCours{
         $this->idEval=$idEval;
     }
 
-    public function getEmailEleve():string{
-        return $this->emailEleve;
+    public function getIdProf():int{
+        return $this->idProf;
     }
-    public function setEmailEleve($emailEleve){
-        $this->emailEleve=$emailEleve;
+    public function setIdProf($idProf){
+        $this->idProf=$idProf;
     }
 
     public function getSatisfaction():int{
@@ -38,6 +41,13 @@ class evalCours{
     }
     public function setRemarqEval($remarqEval){
         $this->remarqEval=$remarqEval;
+    }
+
+    public function getNomCours():string{
+        return $this->remarqEval;
+    }
+    public function setNomCours($nomCours){
+        $this->nomCours=$nomCours;
     }
 }
 

@@ -59,56 +59,11 @@
 			</header>
 		</div>
 
-		<main class="main-content">
-			<div class="fullwidth-block inner-content">
-				<div class="container">
-					<div class="row">
-						<div class="col-md-6">
-							<form action="addEvaluation.php" class="contact-form" method="post">
-								<p>
-									<label>Teacher ID</label>
-									<span class="control"><input type="number" name="idProf" required></span>
-								</p>
-								<p>
-									<label>Course Name </label>
-									<span class="control"><input type="text" name="nomCours" required></span>
-								</p>
-								<p>
-									<label>Satisfaction</label>
-									<span class="control"><input type="number" name="satisfaction" placeholder="Rate your course! /10"min="0" max="20" required></span>
-								</p>
-								<p>
-									<label for="message">Review</label>
-									<span class="control"><textarea name="remarqEval" placeholder="Write down your thoughts"></textarea></span>
-								</p>
-								<p class="text-right">
-									<input type="submit" value="Register Evaluation">
-								</p>
-							</form>
-							<!--PHP FOR FORM GOES HERE PHP HERE PHP HERE PHP HERE PHP HERE PHP HERE PHP HERE PHP HERE -->
-
-						</div>
-						<div class="col-md-6">
-							<div class="contact-info">
-								<address>
-									<strong>Address</strong>
-									<p>Wadha7li INC. <br>Zone Industrielle Chotrana II <br>Ariana Tunis، 2083</p>
-								</address>
-								<div class="contact">
-									<strong>Contact</strong>
-									<p>
-										<a href="tel:532930098891">(+216) 52 621 233 </a>
-										<a href="mailto:office@companyname.com">Selim.Hassani@esprit.tn</a> <br>
-														
-									</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div> <!-- .fullwidth-block -->
-		</main>
-
+        <form action="viewEvaluation.php" class="contact-form" method="post">
+            <p class="text-right">
+                <input type="submit" value="Display Evaluation" style="margin-right:50%">
+            </p>
+        </form>
 		<footer class="site-footer">
 			<div class="container">
 				<div class="row">
