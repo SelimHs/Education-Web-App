@@ -18,6 +18,7 @@ class config
                     ]
                 );
                 
+                
             } catch (Exception $e) {
                 die('Erreur: ' . $e->getMessage());
             }
@@ -27,4 +28,5 @@ class config
 }
 
 
+config::getConnexion();
 

@@ -2,158 +2,116 @@
 
 class Utilisateur
 {
-    public int $id;
-    public string $email;
-    public string $pwd;
-    public string $nom;
-    public string $prenom; 
-    public string $adresse;
-    public string $genre;
-    public string $tel;
-    public string $fonction;
+    private ?int $id;
+    private string $email;
+    private string $password;
+    private string $surname;
+    private string $firstname;
+    private string $passwordC;
+    private string $genre;
+    private string $tel;
+    private string $function;
 
+    public function __construct(?int $id = null, string $surname, string $firstname, string $password, string $passwordC, string $genre, string $email, string $tel, string $function)
+    {
+        $this->id = $id;
+        $this->email = $email;
+        $this->password = $password;
+        $this->surname = $surname;
+        $this->firstname = $firstname;
+        $this->passwordC = $passwordC;
+        $this->genre = $genre;
+        $this->tel = $tel;
+        $this->function = $function;
+    }
     
 
-    public function __construct($id,$email,$pwd,$nom,$prenom,$adresse,$genre,$tel,$fonction){
-       $this->id=$id;
-       $this->email=$email;
-       $this->pwd=$pwd;
-       $this->nom=$nom;
-       $this->prenom=$prenom;
-       $this->adresse=$adresse;
-       $this->genre=$genre;
-       $this->tel=$tel;
-       $this->fonction=$fonction;
-    }
-
-public function getid()
+    public function getId(): int
     {
         return $this->id;
     }
-    public function setid($id)
-    {
-        $this->id = $id;
 
-        return $this;
-    }
-
-
-
-
-    public function getemail()
+    public function getEmail(): string
     {
         return $this->email;
     }
-    public function setemail($email)
-    {
-        $this->email= $email;
 
-        return $this;
-    }
-  
-  
-  
-    public function getpwd()
+    public function setEmail(string $email): void
     {
-        return $this->pwd;
+        $this->email = $email;
     }
 
-    public function setpwd($pwd)
+    public function getPassword(): string
     {
-        $this->pwd = $pwd;
-
-        return $this;
+        return $this->password;
     }
 
-
-    
-    public function getnom()
+    public function setPassword(string $password): void
     {
-        return $this->nom;
+        $this->password = $password;
     }
 
-    public function setnom($nom)
+    public function getSurname(): string
     {
-        $this->nom = $nom;
-
-        return $this;
+        return $this->surname;
     }
 
-
-    
-    public function getprenom()
+    public function setSurname(string $surname): void
     {
-        return $this->prenom;
+        $this->surname = $surname;
     }
 
-    public function setprenom($prenom)
+    public function getFirstname(): string
     {
-        $this->prenom = $prenom;
-
-        return $this;
+        return $this->firstname;
     }
 
-
-
-    
-    public function getadresse()
+    public function setFirstname(string $firstname): void
     {
-        return $this->adresse;
+        $this->firstname = $firstname;
     }
 
-    public function setadresse($adresse)
+    public function getPasswordC(): string
     {
-        $this->adresse = $adresse;
-
-        return $this;
+        return $this->passwordC;
     }
 
+    public function setPasswordC(string $passwordC): void
+    {
+        $this->passwordC = $passwordC;
+    }
 
-
-    
-    public function getgenre()
+    public function getGenre(): string
     {
         return $this->genre;
     }
 
-    public function setgenre($genre)
+    public function setGenre(string $genre): void
     {
         $this->genre = $genre;
-
-        return $this;
     }
 
-
-
-    
-    public function gettel()
+    public function getTel(): string
     {
         return $this->tel;
     }
 
-    public function settel($tel)
+    public function setTel(string $tel): void
     {
         $this->tel = $tel;
-
-        return $this;
     }
 
-
-
-    public function getfonction()
+    public function getFunction(): string
     {
-        return $this->fonction;
+        return $this->function;
     }
 
-    public function setfonction($fonction)
+    public function setFunction(string $function): void
     {
-        $this->fonction = $fonction;
-
-        return $this;
+        $this->function = $function;
     }
-
-
-
-
 }
+
 ?>
+
+

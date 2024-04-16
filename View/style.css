@@ -1,0 +1,158 @@
+/* Utilisation d'une police d'écriture Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif; /* Utilisation de la police Roboto */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    background-color: #f5f5f5;
+}
+
+table {
+    border-collapse: collapse;
+    width: 80%;
+    margin: 20px auto;
+    font-size: 16px;
+    
+}
+
+th, td {
+    border: 1px solid #d4a9b7;
+    padding: 10px;
+    text-align: left;
+    background-color: #fff9fc;
+    color: #cc7946;
+}
+
+th {
+    background-color: #c1a6b08d;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 25px; /* Coins arrondis */
+    background-color: #df126e;
+    color: #fff;
+    border: 2px solid transparent;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s;  
+}
+
+.btn-pink {
+    background-color: rgb(212, 159, 168);
+}
+
+.btn:hover {
+    background-color: rgb(231, 87, 135); /* Changement de couleur au survol */
+    border-color: rgb(231, 87, 135); /* Changement de couleur de la bordure au survol */
+    transform: translateY(-2px); /* Déplacement vers le haut au survol */
+}
+
+form label {
+    font-size: 20px; /* Changer la taille de la police */
+    padding: 8px; /* Ajouter de l'espace à l'intérieur des éléments */
+    color: rgb(170, 73, 3); /* Couleur marron pour les labels */
+}
+
+form a {
+    font-size: 20px;
+    padding: 8px;
+}
+
+/* Ajout de styles spécifiques au formulaire */
+.form-container {
+    background-color: rgb(228, 202, 182);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Ombre légère */
+    animation: fadeIn 0.5s; /* Animation d'apparition */
+    width: 400px; /* Largeur du formulaire */
+    margin: 0 auto; /* Centrage horizontal */
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+form label {
+    display: block; /* Affichage en bloc */
+    margin-bottom: 10px; /* Espacement en bas */
+    font-size: 16px; /* Taille de police */
+}
+form input[type="email"],
+form input[type="tel"],
+form input[type="text"],
+form input[type="password"],
+form select,
+form textarea {
+    width: 100%; /* Largeur de 100% */
+    padding: 10px; /* Espacement intérieur */
+    margin-bottom: 10px; /* Espacement en bas */
+    border-radius: 5px; /* Coins arrondis */
+    border: 1px solid #ddd; /* Bordure */
+    box-sizing: border-box; /* Boîte de modélisation */
+    font-size: 16px; /* Taille de police */
+}
+form a {
+    display: block; /* Affichage en bloc */
+    margin-top: 20px; /* Espacement en haut */
+    text-align: center; /* Alignement du texte au centre */
+    color: #333; /* Couleur du texte */
+    text-decoration: none; /* Pas de soulignement */
+    font-size: 16px; /* Taille de police */
+}
+form a:hover {
+    color: #c96b95; /* Changement de couleur au survol */
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.btn-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px; /* Espacement entre les boutons et le reste du formulaire */
+}
+
+.btn-container input[type="submit"],
+.btn-container input[type="reset"] {
+    margin: 0 10px; /* Espacement entre les boutons */
+}
+
+.message-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 9999;
+}
+.centered-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #fff; /* Fond blanc */
+}

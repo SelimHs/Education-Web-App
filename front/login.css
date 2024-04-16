@@ -1,0 +1,103 @@
+.header-container {
+    width: 100%;
+    background-color: #f8f9fa;
+    padding: 10px 0;
+    box-sizing: border-box;
+}
+
+.login-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+    margin-top: 50px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Utilisation d'une police de caractères moderne */
+}
+
+.login-container .field {
+    margin-bottom: 20px;
+}
+
+.login-container header {
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333; /* Couleur du titre */
+    font-weight: bold; /* Police en gras */
+}
+
+.login-container .links {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.form-box {
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #b9cdb9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ombre légère */
+    transition: transform 0.3s ease; /* Animation de transition */
+}
+
+.form-box:hover {
+    transform: translateY(-5px); /* Animation de translation vers le haut au survol */
+}
+
+label {
+    color: #333;
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold; /* Police en gras */
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="tel"],
+select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    background-color: #f7faf7;
+}
+
+input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Animation de transition */
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3; /* Changement de couleur au survol */
+}
+
+.links a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.links a:hover {
+    text-decoration: underline;
+}
+
+.custom-btn {
+    background-color: #5cb677; /* Couleur de fond */
+    color: white; /* Couleur du texte */
+    padding: 15px 30px; /* Espacement intérieur */
+    text-decoration: none; /* Supprimer la décoration de lien */
+    border-radius: 5px; /* Bord arrondi */
+}
+
+.custom-btn:hover {
+    background-color: #0c7e3b; /* Couleur de fond au survol */
+}
