@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1">
+    <title>Courses | Lincoln High School</title>
+    <!-- Loading third party fonts -->
+    <link href="http://fonts.googleapis.com/css?family=Arvo:400,700|" rel="stylesheet" type="text/css">
+    <link href="fonts/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <!-- Loading main css file -->
+    <link rel="stylesheet" href="style.css">
+    <!--[if lt IE 9]>
+    <script src="js/ie-support/html5.js"></script>
+    <script src="js/ie-support/respond.js"></script>
+    <![endif]-->
+    <style>
+        body {
+            font-family: 'Arvo', serif;
+            background-color: #f7f7f7;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+        }
+        .site-header {
+            background-color: #fff;
+            border-bottom: 1px solid #ddd;
+            padding: 20px 0;
+        }
+        .site-title {
+            font-size: 24px;
+            margin: 0;
+            padding: 0;
+        }
+        .menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .menu li {
+            display: inline-block;
+            margin-right: 20px;
+        }
+        .menu li a {
+            text-decoration: none;
+            color: #333;
+        }
+        .page-title {
+            background-color: #eee;
+            padding: 20px 0;
+            margin-bottom: 20px;
+        }
+        .page-title h2 {
+            margin: 0;
+            padding: 0;
+            font-size: 32px;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        input[type="text"], input[type="submit"] {
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div id="site-content">
+    <header class="site-header">
+        <div class="container">
+            <a href="index.html" id="branding">
+                <img src="images/logo.png" alt="Lincoln high School">
+                <h1 class="site-title">Lincoln High School</h1>
+            </a>
+            <div class="main-navigation">
+                <ul class="menu">
+                    <li class="menu-item"><a href="index.html">Home</a></li>
+                    <li class="menu-item current-menu-item"><a href="formation.html">Session</a></li>
+                    <li class="menu-item"><a href="student.html">Students</a></li>
+                    <li class="menu-item"><a href="event.html">Events</a></li>
+                    <li class="menu-item"><a href="contactEtudiant.html">Review</a></li>
+                    <li class="menu-item"><a href="contactProf.html">Marks</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <div class="page-title">
+            <h2>Join Our Courses</h2>
+        </div>
+        <form action="http://localhost/gestionSess/view/ajouterSession.php" method="post">
+            <input type="text" name="type" placeholder="Session Type"><br>
+            <input type="text" name="idS" placeholder="Student ID"><br>
+            <input type="text" name="nomProf" placeholder="Professor Name"><br>
+            <input type="text" name="code" placeholder="Session Code"><br>
+            <input type="text" name="nbrE" placeholder="Number of Students"><br>
+            <input type="submit" value="Add a Session">
+        </form>
+        <form action="modifierSession.php" method="post">
+            <input type="text" name="type" placeholder="Session Type"><br>
+            <input type="text" name="idS" placeholder="Student ID"><br>
+            <input type="text" name="nomProf" placeholder="Professor Name"><br>
+            <input type="text" name="code" placeholder="Session Code"><br>
+            <input type="text" name="nbrE" placeholder="Number of Students"><br>
+            <input type="submit" value="Update a Session">
+        </form>
+        <form action="supprimerSession.php" method="post">
+            <input type="text" name="idS" placeholder="Session ID to Delete"><br>
+            <input type="submit" value="Delete a Session">
+        </form>
+        <form action="http://localhost/gestionSess/view/afficherSession.php" method="get">
+            <input type="text" name="idS" placeholder="Session ID to Display"><br>
+            <input type="submit" value="Display a Session">
+        </form>
+    </div>
+</div>
+<script src="js/jquery-1.11.1.min.js"></script>
+<script src="js/plugins.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
