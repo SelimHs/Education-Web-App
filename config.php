@@ -9,7 +9,7 @@ class config
             $servername="localhost";
             $username="root";
             $password="";
-            $dbname="2a25";
+            $dbname="wadh7li";
             try {
                 self::$pdo = new PDO("mysql:host=$servername;dbname=$dbname",
                         $username,
