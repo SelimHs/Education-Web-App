@@ -100,7 +100,7 @@
         <div class="page-title">
             <h2>Join Our Courses</h2>
         </div>
-        <form action="http://localhost/gestionSess/view/ajouterSession.php" method="post">
+        <form action="http://localhost/gestionSess/view/ajouterSession.php" method="post" onsubmit="return validateForm(this);">
             <input type="text" name="type" placeholder="Session Type"><br>
             <input type="text" name="idS" placeholder="Student ID"><br>
             <input type="text" name="nomProf" placeholder="Professor Name"><br>
@@ -108,7 +108,7 @@
             <input type="text" name="nbrE" placeholder="Number of Students"><br>
             <input type="submit" value="Add a Session">
         </form>
-        <form action="modifierSession.php" method="post">
+        <form action="modifierSession.php" method="post" onsubmit="return validateForm(this);">
             <input type="text" name="type" placeholder="Session Type"><br>
             <input type="text" name="idS" placeholder="Student ID"><br>
             <input type="text" name="nomProf" placeholder="Professor Name"><br>
@@ -116,11 +116,11 @@
             <input type="text" name="nbrE" placeholder="Number of Students"><br>
             <input type="submit" value="Update a Session">
         </form>
-        <form action="supprimerSession.php" method="post">
+        <form action="supprimerSession.php" method="post" onsubmit="return validateForm(this);">
             <input type="text" name="idS" placeholder="Session ID to Delete"><br>
             <input type="submit" value="Delete a Session">
         </form>
-        <form action="http://localhost/gestionSess/view/afficherSession.php" method="get">
+        <form action="http://localhost/gestionSess/view/afficherSession.php" method="get" onsubmit="return validateForm(this);">
             <input type="text" name="idS" placeholder="Session ID to Display"><br>
             <input type="submit" value="Display a Session">
         </form>
@@ -129,5 +129,6 @@
 <script src="js/jquery-1.11.1.min.js"></script>
 <script src="js/plugins.js"></script>
 <script src="js/app.js"></script>
+<script src="js.js"></script>
 </body>
 </html>

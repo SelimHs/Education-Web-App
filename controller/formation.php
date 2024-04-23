@@ -1,18 +1,20 @@
 <?php
-require_once '../config.php';
-require_once '../Model/formation.php';
+require_once '../../config.php';
+require_once '../../model/formation.php';
 
 // Get all formations from the database
 function getAllFormation(){
     $db = config::getConnexion();
     try {
-        $query = $db->prepare("SELECT * FROM formation");
-        $rows = $db->query($query);
+        // No need to prepare the query again, just directly query it
+        $rows = $db->query("SELECT * FROM formation");
         return $rows;
     } catch(PDOException $e) {
         return $e->getMessage();
     }
 }
+
+  
 
 // Add a new formation to the database
 function ajouterFormation($formation){

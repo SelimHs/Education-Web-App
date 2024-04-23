@@ -7,7 +7,7 @@ class formation {
     public string $type;
     
     // Constructor
-    public function __construct(int $idS, string $nomProf, int $code, int $nbrE, string $type) {
+    public function _construct(int $idS, string $type,int $code, int $nbrE,string $nomProf ) {
         $this->idS = $idS;
         $this->nomProf = $nomProf;
         $this->code = $code;
