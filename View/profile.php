@@ -20,6 +20,21 @@ if (isset($_SESSION['user'])) {
             // Actualiser les données de l'utilisateur après la mise à jour
             $user = $userC->showUser($id_utilisateur_connecte);
         }
+        else if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete'])) {
+
+            // Appeler la fonction delete de UtilisateurC
+      
+            $userC->deleteUser($id_utilisateur_connecte);
+      
+       
+      
+            // Rediriger vers la page d'inscription
+      
+            header("Location: register.php");
+      
+            exit();
+      
+          }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,13 +47,14 @@ if (isset($_SESSION['user'])) {
     <!-- Chargement du fichier CSS principal -->
     <link rel="stylesheet" href="../front/style.css">
     <link rel="stylesheet" href="../front/login.css">
-    <script src="validation.js"></script>
     
     <title>Profile</title>
     <!-- Inclure vos fichiers CSS ici -->
 </head>
 
 <body>
+<div class="container login-container">
+        <div class="box form-box">
     <h1>Profile</h1>
     <form action="" method="POST" class="form-container">
     <div style="display: flex;">
@@ -51,8 +67,8 @@ if (isset($_SESSION['user'])) {
             <input type="text" id="FirstName" name="FirstName" value="<?php echo $user['FirstName'] ?>" required style="margin-bottom: 10px;"/><br>
             <label for="Password">Password:</label><br>
             <input type="password" id="Password" name="Password" value="<?php echo $user['Password'] ?>" required style="margin-bottom: 10px;"/><br>
-            <label for="editPasswordC">Password Confirmation:</label><br>
-            <input type="Password" id="PasswordC" name="PasswordC" value="<?php echo $user['PasswordC'] ?>" required style="margin-bottom: 10px;"/><br>
+            <label for="PasswordC">Password Confirmation:</label><br>
+            <input type="password" id="PasswordC" name="PasswordC" value="<?php echo $user['PasswordC'] ?>" required style="margin-bottom: 10px;"/><br>
         </div>
         <!-- Partie droite du formulaire -->
         <div style="flex: 1; padding-left: 10px;">
@@ -70,9 +86,12 @@ if (isset($_SESSION['user'])) {
         </div>
     </div>
         <input type="submit" name="update" value="Update">
+        <input type="submit" name="delete" value="Delete">
         <!-- Bouton de déconnexion -->
         <a href="logout.php">Log Out</a>
     </form>
+    </div>
+    </div>
 </body>
 
 </html>

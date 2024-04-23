@@ -12,6 +12,7 @@
     <!-- Chargement du fichier CSS principal -->
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="login.css">
+   
     
     <!--[if lt IE 9]>
     <script src="js/ie-support/html5.js"></script>
@@ -56,9 +57,26 @@
 
 
    
-    <header style="color: black; text-align: center; margin-top: 40px;">WELCOME YOU CAN LOGIN HERE</header>
-    <div class="text-center">
-        <a href="../View/login.php" class="custom-btn btn-lg" style="margin-top: 20px;">LOG IN</a><br>
+    <div class="container login-container">
+        <div class="box form-box">
+            <header>Login</header>
+            <form action="../View/login.php" method="post">
+                <div class="field input">
+                    <label for="email">Email</label>
+                    <input type="text" name="email" id="email" autocomplete="off" required>
+                </div>
+                <div class="field input  password-input">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" id="password" autocomplete="off" required>
+                </div>
+                <div class="field">
+                    <input type="submit" class="bnt" name="submit" value="Login">
+                </div>
+                <div class="links">
+                    Don't have an account? <a href="sinscrire.html">Sign up Now</a>
+                </div>
+            </form>
+        </div>
     </div>
     
 

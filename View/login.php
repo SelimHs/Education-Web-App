@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['email']) && isset($_PO
 <div class="container login-container">
         <div class="box form-box">
             <header>Login</header>
-            <form action="../View/login.php" method="post">
+            <form action="" method="post">
                 <div class="field input">
                     <label for="email">Email</label>
                     <input type="text" name="email" id="email" autocomplete="off" required>
