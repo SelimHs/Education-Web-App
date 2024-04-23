@@ -1,27 +1,25 @@
 <?php
-class orientation{
-    private int $id;
-    private string $type;
-    private string $date_reservation;
-    private string $horaire_rdv;
-    private int $num_salle;
-    private int $prix;
-    private string $nom_m;
-    private string $nom_e;
-    
-    public function __construct($i,$t,$d,$h,$n,$p,$nm,$ne)
-    {
-        $this->id=$i; 
-        $this->type=$t;
-        $this->date_reservation=$d;
-        $this->horaire_rdv=$h;
-        $this->num_salle=$n;
-        $this->prix=$p;
-        $this->nom_m=$nm;
-        $this->nom_e=$ne;
+class orientation {
+    public int $id;
+    public string $type;
+    public string $date_reservation;
+    public string $horaire_rdv;
+    public int $num_salle;
+    public int $prix;
+    public string $nom_m;
+    public string $nom_e;
 
-
+    public function __construct(int $id, string $type, string $date_reservation, string $horaire_rdv, int $num_salle, int $prix, string $nom_m, string $nom_e) {
+        $this->id = $id; // Ensure $id is an integer
+        $this->type = $type;
+        $this->date_reservation = $date_reservation;
+        $this->horaire_rdv = $horaire_rdv;
+        $this->num_salle = $num_salle;
+        $this->prix = $prix;
+        $this->nom_m = $nom_m;
+        $this->nom_e = $nom_e;
     }
+
     
 
     /**

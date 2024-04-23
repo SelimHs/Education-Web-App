@@ -1,36 +1,32 @@
 <?php
-include "../config.php";
+include "../../config.php";
 class OrientationC
 {
     private $db;
-public function showOrientation($orientation)
-{
-    echo' <table border=1 width="100%">
-        <tr align="center" >
-        <td> Id<td>
-        <td> type</td>
-        <td> date_reservation </td>
-        <td> horarire_rdv </td>
-        <td> num_salle</td>
-        <td> prix</td>
-        <td> nom_m</td>
-        <td> nom_e</td>
-        </tr>
-        <tr>
-        
-        <td>'.$orientation->getId().'</td>
-        <td>'.$orientation->getType().'</td>
-        <td>'.$orientation->getDate_reservation().'</td>
-        <td>'.$orientation->getHoraire_rdv().'</td>
-        <td>'.$orientation->getNum_salle().'</td>
-        <td>'.$orientation->getPrix().'</td>
-        <td>'.$orientation->getNom_m().'</td>
-        <td>'.$orientation->getNom_e().'</td>
-        </tr>
-        </table>';
-
-
-}
+    public function showOrientation($orientation)
+    {
+        echo '<table border="1" width="100%" style="border-collapse: collapse; text-align: center;">
+                <tr>
+                    <th>Nom Client</th>
+                    <th>Date Orientation</th>
+                    <th>Horaire Orientation</th>
+                    <th>Type</th>
+                    
+                    
+                    
+                    
+                </tr>
+                <tr>
+                    <td>'.$orientation->getNom_e().'</td>
+                    <td>'.$orientation->getDate_reservation().'</td>
+                    <td>'.$orientation->getHoraire_rdv().'</td>
+                    <td>'.$orientation->getType().'</td>
+                  
+                </tr>
+              </table>';
+              header("Location: Forientation.php");
+    }
+    
 public function ajouterOrientation($id, $type, $date_reservation, $horaire_rdv, $num_salle, $prix, $nom_m, $nom_e) {
     $db = Config::getConnexion();
     try {
@@ -112,6 +108,7 @@ public function listOrientation()
             return false;
         }
     }
+ 
    
 }
 ?>
