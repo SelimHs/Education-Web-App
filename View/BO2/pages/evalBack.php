@@ -330,6 +330,15 @@
   background-color: #ffffff; /* Blanc au survol */
   color: #ff69b4; /* Couleur du texte en rose */
 }
+.button-container {
+    display: flex;
+    justify-content: space-between; /* Aligns items with space between them */
+}
+
+.button-container form {
+    margin-bottom: 10px; /* Adjust this as needed for spacing between buttons */
+}
+
 
 
   </style>
@@ -393,6 +402,22 @@
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="../assets/js/material-dashboard.min.js?v=3.1.0"></script>
+  <script>
+    function showUpdateForm(id) {
+        // Hide all update forms
+        document.querySelectorAll('[id^="updateForm"]').forEach(form => {
+            form.style.display = 'none';
+        });
+
+        // Show the update form corresponding to the ID
+        document.getElementById('updateForm' + id).style.display = 'block';
+    }
+
+    function hideUpdateForm(id) {
+        // Hide the update form corresponding to the ID
+        document.getElementById('updateForm' + id).style.display = 'none';
+    }
+</script>
 </body>
 <div class="container-fluid py-4">
       <div class="row">
@@ -414,13 +439,12 @@
             </div>
           </form>
           <div class="col-auto">
-          <form action="stat.php" method="get" onsubmit="return validateForm(this);">
-          <button type="submit" class="btn btn-primary mb-3">Course Statistics</button>
-          </form>
-        </div>  
-        <div class="col-auto">
+          <div class="button-container">
     <form action="evalPDF.php" method="get">
         <button type="submit" class="btn btn-primary mb-3">Export to PDF</button>
+    </form>
+    <form action="stat.php" method="get" onsubmit="return validateForm(this);">
+        <button type="submit" class="btn btn-primary mb-3">Course Statistics</button>
     </form>
 </div>
         </div>  
@@ -468,9 +492,34 @@
               <td><?= $row['satisfaction']; ?></td>
               <td><?= $row['remarqEval']; ?></td>
               <td>
-                <a href="updateCours.php?idC=<?= $cours['idC']; ?>" class="update-btn">Modifier</a>
-                <a href="deleteEvalBack.php?idEval=<?= $row['idEval']; ?>">Supprimer</a>
-              </td>
+    <a href="#" class="update-btn" onclick="showUpdateForm(<?= $row['idEval']; ?>)">Modifier</a>
+    <a href="deleteEvalBack.php?idEval=<?= $row['idEval']; ?>">Supprimer</a>
+</td>
+<div id="updateForm<?= $row['idEval']; ?>" style="display: none;">
+    <form method="POST" action="../../updateEval.php">
+        <input type="hidden" name="idEval" value="<?= $row['idEval']; ?>">
+        <div class="form-group">
+            <label>Teacher ID:</label>
+            <input type="number" name="idProf" value="<?= $row['idProf']; ?>" required>
+        </div>
+        <div class="form-group">
+            <label>Course Name:</label>
+            <input type="text" name="nomCours" value="<?= $row['nomCours']; ?>" required>
+        </div>
+        <div class="form-group">
+            <label for="satisfaction">Satisfaction:</label>
+            <input type="number" name="satisfaction" value="<?= $row['satisfaction']; ?>" required min="0" max="20">
+        </div>
+        <div class="form-group">
+            <label for="remarqEval">Review:</label>
+            <input type="text" name="remarqEval" value="<?= $row['remarqEval']; ?>" required>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-outline-primary btn-sm mb-0 me-3">Update</button>
+            <button type="button" onclick="hideUpdateForm(<?= $row['idEval']; ?>)" class="btn btn-outline-primary btn-sm mb-0 me-3">Cancel</button>
+        </div>
+    </form>
+</div>
 
         </tr>
         <?php
@@ -480,10 +529,12 @@
 
       </tbody>
            </table>
+
               </div>
             </div>
           </div>
         </div>
       </div>
 
+      
 </html>

@@ -387,6 +387,32 @@
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="../assets/js/material-dashboard.min.js?v=3.1.0"></script>
+  <script>
+  // Function to show the update form
+  function showUpdateForm(id) {
+    // Hide all other update forms
+    hideAllUpdateForms();
+    // Show the update form for the given id
+    document.getElementById('updateForm' + id).style.display = 'block';
+  }
+
+  // Function to hide all update forms
+  function hideAllUpdateForms() {
+    // Get all elements with IDs starting with 'updateForm'
+    var updateForms = document.querySelectorAll('[id^="updateForm"]');
+    // Loop through each update form and hide it
+    updateForms.forEach(function(form) {
+      form.style.display = 'none';
+    });
+  }
+
+  // Function to hide a specific update form
+  function hideUpdateForm(id) {
+    // Hide the update form for the given id
+    document.getElementById('updateForm' + id).style.display = 'none';
+  }
+</script>
+
 </body>
 <div class="container-fluid py-4">
       <div class="row">
@@ -408,12 +434,12 @@
             </div>
           </form>
           <div class="col-auto">
-          <form action="resultatPDF.php" method="get">
-         <button type="submit" class="btn btn-primary mb-3">Export to PDF</button>
-          </form>
-          <div class="text-center mt-4">
-        <button id="showStatsBtn" class="btn btn-primary">Show Statistics</button>
-    </div>
+          <div class="col-auto d-flex justify-content-between">
+    <form action="resultatPDF.php" method="get">
+        <button type="submit" class="btn btn-primary mb-3">Export to PDF</button>
+    </form>
+    <button id="showStatsBtn" class="btn btn-primary">Show Statistics</button>
+</div>
 
     <!-- Script to handle the click event and display statistics -->
     <script>
@@ -467,10 +493,33 @@
               <td><?= $row['noteExamen']; ?></td>
               <td><?= $row['appreciation']; ?></td>
               <td>
-                <a href="updateCours.php?idC=<?= $cours['idC']; ?>" class="update-btn">Modifier</a>
-                <a href="deleteResultatBack.php?idResultat=<?= $row['idResultat']; ?>">Supprimer</a>
-              </td>
-
+              <a href="#" class="update-btn" onclick="showUpdateForm(<?= $row['idResultat']; ?>)">Modifier</a>
+      <!-- Link to delete result -->
+      <a href="deleteResultatBack.php?idResultat=<?= $row['idResultat']; ?>">Supprimer</a>
+    </td>
+  </tr>
+  <!-- Update form for each result -->
+  <div id="updateForm<?= $row['idResultat']; ?>" style="display: none;">
+    <form method="POST" action="../../updateMarks.php">
+      <input type="hidden" name="idResultat" value="<?= $row['idResultat']; ?>">
+      <div class="form-group">
+        <label>Note CC:</label>
+        <input type="number" name="noteCC" value="<?= $row['noteCC']; ?>" min="0" max="20" required>
+      </div>
+      <div class="form-group">
+        <label>Note Examen:</label>
+        <input type="number" name="noteExamen" value="<?= $row['noteExamen']; ?>" min="0" max="20" required>
+      </div>
+      <div class="form-group">
+        <label>Appreciation:</label>
+        <input type="text" name="appreciation" value="<?= $row['appreciation']; ?>" required>
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-outline-primary btn-sm mb-0 me-3">Update</button>
+        <button type="button" onclick="hideUpdateForm(<?= $row['idResultat']; ?>)" class="btn btn-outline-primary btn-sm mb-0 me-3">Cancel</button>
+      </div>
+    </form>
+  </div>
         </tr>
         <?php
       }
