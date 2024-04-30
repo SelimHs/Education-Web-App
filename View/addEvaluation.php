@@ -13,11 +13,6 @@ $remarqEval= $_POST['remarqEval'];
 $query=$db->prepare("INSERT INTO evalformation (idProf, nomCours, satisfaction, remarqEval)
 VALUES ( '$idProf', '$nomCours', '$satisfaction', '$remarqEval')");
 $query->execute();
-if($query){  
-header("Location: contactEtudiant.html");
-    exit();
-} else {
-    header("Location: index.html");
-}
+
 }
 ?>

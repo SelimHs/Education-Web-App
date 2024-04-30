@@ -6,8 +6,10 @@ require_once '../Model/evalModel.php';
      function getAllEval(){
         $db=config::getConnexion();
         try{
-            $query=$db->prepare("SELECT * FROM evalCours");
-            $rows=$db->query($query);
+            $query=$db->prepare("SELECT * FROM evalFormation");
+            $query->execute();
+            $rows = $query->fetchAll(PDO::FETCH_ASSOC); // Fetch all rows
+            //$rows=$db->query($query);
             return $rows;
         }
     catch(PDOException $e)

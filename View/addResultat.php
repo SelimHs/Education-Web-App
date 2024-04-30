@@ -12,11 +12,5 @@ $appreciation= $_POST['appreciation'];
 $query=$db->prepare("INSERT INTO resultat (noteCC, noteExamen, appreciation)
 VALUES ( '$noteCC', '$noteExamen', '$appreciation')");
 $query->execute();
-if($query){  
-header("Location: contactProf.html");
-    exit();
-} else {
-    header("Location: index.html");
-}
 }
 ?>
