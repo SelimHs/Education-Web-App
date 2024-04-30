@@ -1,17 +1,18 @@
 <?php
 class presence{
-    private int $idP=0;
+    private int $idP;
     //private int $idE;
-    //private int $idS;
+    private int $idS;
     private string $statut;
     private string $heureA;
 
 
     
-   public function _construct(int $idP, string $statut,string $heureA){
+   public function _construct(int $idP, int $idS,string $statut,string $heureA){
     $this->idP=$idP;
     $this->statut=$statut;
     $this->heureA=$heureA;
+    $this->idS=$idS;
     }
 
 
@@ -20,6 +21,12 @@ class presence{
     }
     public function setIdP($idP){
         $this->idP=$idP;
+    }
+    public function getIdS():float{
+        return $this->idS;
+    }
+    public function setIdS($idS){
+        $this->idS=$idS;
     }
 ///////////////
     /*public function getIdUser():float{

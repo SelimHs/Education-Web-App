@@ -1,9 +1,6 @@
 <?php
 require_once '../../config.php';
 
-// Initialize $row variable
-$row = null;
-
 // Check if ID is provided and exists
 if(isset($_GET['id'])) {
     $id = $_GET['id'];
@@ -11,24 +8,16 @@ if(isset($_GET['id'])) {
     
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Update the record
-        $type = $_POST['type'];
-        $idS = $id; // Utilisation de idS pour identifier la formation à modifier
-        $nomProf = $_POST['nomProf'];
-        $code = $_POST['code'];
-        $nbrE = $_POST['nbrE'];
-    
+        $statut = $_POST['statut'];
+        $heureA = $_POST['heureA'];
+        $idS = $_POST['idS'];
+        
         try {
-            // Prepare the query before execution
-            $query = $conn->prepare("UPDATE formation SET type = :type, nomProf = :nomProf, code = :code, nbrE = :nbrE WHERE idS = :idS");
-            
-            // Lier les paramètres
+            $query = $conn->prepare("UPDATE presence SET statut = :statut, heureA = :heureA, idS = :idS WHERE idP = :id");
+            $query->bindParam(':statut', $statut);
+            $query->bindParam(':heureA', $heureA);
             $query->bindParam(':idS', $idS);
-            $query->bindParam(':type', $type);
-            $query->bindParam(':nomProf', $nomProf);
-            $query->bindParam(':code', $code);
-            $query->bindParam(':nbrE', $nbrE);
-
-            // Execute the query
+            $query->bindParam(':id', $id);
             $query->execute();
             
             // Redirect back to the original page after successful update
@@ -42,7 +31,7 @@ if(isset($_GET['id'])) {
 
     // Fetch the record to pre-populate the form
     try {
-        $query = $conn->prepare("SELECT * FROM formation WHERE idS = :id");
+        $query = $conn->prepare("SELECT * FROM presence WHERE idP = :id");
         $query->bindParam(':id', $id);
         $query->execute();
         $row = $query->fetch();
@@ -119,31 +108,23 @@ if(isset($_GET['id'])) {
 </head>
 <body>
     <div class="container">
-        <h2>Modifier la formation</h2>
+        <h2>Modifier la présence</h2>
         <form method="post">
-            <?php if($row): ?>
-                <div>
-                    <label for="type">Type:</label>
-                    <input type="text" name="type" id="type" value="<?php echo $row['type']; ?>">
-                </div>
-                <div>
-                    <label for="nomProf">Nom Prof:</label>
-                    <input type="text" name="nomProf" id="nomProf" value="<?php echo $row['nomProf']; ?>">
-                </div>
-                <div>
-                    <label for="code">Code:</label>
-                    <input type="text" name="code" id="code" value="<?php echo $row['code']; ?>">
-                </div>
-                <div>
-                    <label for="nbrE">Nombre d'Etudiants:</label>
-                    <input type="text" name="nbrE" id="nbrE" value="<?php echo $row['nbrE']; ?>">
-                </div>
-                <div>
-                    <input type="submit" value="Save">
-                </div>
-            <?php else: ?>
-                <p>Session not found.</p>
-            <?php endif; ?>
+            <div>
+                <label for="statut">Statut:</label>
+                <input type="text" name="statut" id="statut" value="<?php echo $row['statut']; ?>">
+            </div>
+            <div>
+                <label for="heureA">Heure:</label>
+                <input type="text" name="heureA" id="heureA" value="<?php echo $row['heureA']; ?>">
+            </div>
+            <div>
+                <label for="idS">ID Session:</label>
+                <input type="text" name="idS" id="idS" value="<?php echo $row['idS']; ?>">
+            </div>
+            <div>
+                <input type="submit" value="Save">
+            </div>
         </form>
     </div>
 </body>

@@ -142,7 +142,7 @@
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
             <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Pages</a></li>
-            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">formation</li>
+            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Presence</li>
           </ol>
           <h6 class="font-weight-bolder mb-0">Tables</h6>
         </nav>
@@ -264,7 +264,7 @@
           <div class="card my-4">
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
               <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                <h6 class="text-white text-capitalize ps-3">Ajouter formation</h6>
+                <h6 class="text-white text-capitalize ps-3">Ajouter Presence</h6>
                 </div>
             </div>
             <!DOCTYPE html>
@@ -313,29 +313,25 @@
 </head>
 <body>
       <div class="container">
-          <form method="POST" action="verification.php">
+          <form method="POST" action="verification1.php">
               <div class="form-group">
                   <label for="idS">idS:</label>
                   <input type="text" id="idS" name="idS" pattern="[0-9]+" title="Veuillez saisir un ID valide (chiffres uniquement)" required>
               </div>
               <div class="form-group">
-                  <label for="type">Type:</label>
-                  <select id="type" name="type" required>
-                      <option value="francais">francais</option>
-                      <option value="math">math</option>
-                      <option value="web">web</option>
+                  <label for="statut">statut:</label>
+                  <select id="statut" name="statut" required>
+                      <option value="absent(e)">absent(e)</option>
+                      <option value="present(e)">present(e)</option>
                   </select>
               </div>
               
-              <label for="nomProf">Nom du Prof:</label>
-      <input type="text" id="nomProf" name="nomProf" pattern="[A-Za-z]+" title="Veuillez saisir un nom valide (lettres uniquement)" required><br><br>
-      <label for="code">code:</label>
-      <input type="number" id="code" name="code" pattern="[0-9]+" title="Veuillez saisir un numéro de salle valide (chiffres uniquement)" required><br><br>
+     
+      <label for="heureA">heureA:</label>
+      <input type="date" id="heureA" name="heureA" pattern="[0-9]+" title="Veuillez saisir un numéro de salle valide (chiffres uniquement)" required><br><br>
       
-      <label for="nbrE">nbrE:</label>
-      <input type="number" id="nbrE" name="nbrE" min="0" required><br><br>
-      
-      
+      <label for="idP">idP:</label>
+      <input type="number" id="idP" name="idP" min="0" required><br><br>
       
       
               <div class="form-group">
@@ -357,18 +353,18 @@
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
               <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
                 
-                <h6 class="text-white text-capitalize ps-3">formation table</h6>
+                <h6 class="text-white text-capitalize ps-3">presence table</h6>
               </div>
             </div>
             <?php
     // Inclusion du fichier de contrôleur pour les orientations
-    include '../../controller/formation.php';
+    include '../../controller/presence.php';
     
     // Création d'une instance du contrôleur des orientations
-    $formation = new formation();
+    $presence = new presence();
     
     // Récupération de la liste des orientations
-    $list = getAllFormation(); 
+    $list = getAllPresence(); 
     
 ?>
             <div class="card-body px-0 pb-2">
@@ -377,17 +373,16 @@
             <thead>
                 <tr>
                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">idS</th>
-                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">type</th>
-                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">nomProf</th>
-                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">code</th>
-                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">nbrE</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">statut</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">heureA</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">idP</th>
                     <th class="text-secondary opacity-7"></th>
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($list as $formation): ?>
+                <?php foreach ($list as $presence): ?>
                 <tr>
-                <td class="mb-0 text-sm align-middle text-center font-weight-bold text-uppercase text-secondary text-xxs font-weight-bolder opacity-100000"><?= $formation['idS']; ?></td>
+                <td class="mb-0 text-sm align-middle text-center font-weight-bold text-uppercase text-secondary text-xxs font-weight-bolder opacity-100000"><?= $presence['idP']; ?></td>
 
 
 
@@ -395,44 +390,32 @@
                     
                     
     // Récupérer le statut de l'orientation
-    $type = $formation['type'];
+    $type = $presence['statut'];
 
     // Définir la classe CSS en fonction du statut
     $class = '';
     switch ($type) {
-      case 'francais':
+      case 'absent(e)':
         $class = 'bg-gradient-success';
         break;
-      case 'math':
+      case 'present(e)':
         $class = 'bg-gradient-warning';
         break;
-      case 'anglais':
-        $class = 'bg-gradient-danger';
-        break;
-      default:
-        $class = '';
     }
   ?>
   <!-- Afficher le statut avec la classe CSS correspondante -->
   
+  
   <span class="badge badge-sm <?= $class; ?>"><?= $type; ?></span></td>
-                    <td class="mb-0 text-sm align-middle text-center font-weight-bold text-uppercase text-secondary text-xxs font-weight-bolder opacity-100000"><?= $formation['nomProf']; ?></td>
-                    <td class="mb-0 text-sm align-middle text-center font-weight-bold text-uppercase text-secondary text-xxs font-weight-bolder opacity-100000"><?= $formation['code']; ?></td>
-                    <td class="mb-0 text-sm align-middle text-center font-weight-bold text-uppercase text-secondary text-xxs font-weight-bolder opacity-100000"><?= $formation['nbrE']; ?></td>
+
+                    <td class="mb-0 text-sm align-middle text-center font-weight-bold text-uppercase text-secondary text-xxs font-weight-bolder opacity-100000"><?= $presence['heureA']; ?></td>
+                    <td class="mb-0 text-sm align-middle text-center font-weight-bold text-uppercase text-secondary text-xxs font-weight-bolder opacity-100000"><?= $presence['idP']; ?></td>
                     <td>
-                      
-                    
-                    <a href="modifierSession.php?id=<?php echo $formation['idS']?>" class="btn btn-secondary m_2">modifier</a>
-
-
+                    <a href="modifierP.php?id=<?php echo $presence['idP']?>" class="btn btn-secondary m_2">modifier</a>
                         <!-- Lien de suppression avec passage de l'ID de l'orientation à supprimer -->
-                        <a href="supprimer.php?idS=<?php echo $formation['idS'] ?>" class="btn btn-secondary m_2" data-toggle="tooltip" data-original-title="Edit user">supprimer</a>
+                        <a href="supprimerP.php?idP=<?php echo $presence['idP'] ?>" class="btn btn-secondary m_2" data-toggle="tooltip" data-original-title="Edit user">supprimer</a>
 
 </a>
-
-
-
-
                     </td>
                 </tr>
                 <?php endforeach; ?>
@@ -443,7 +426,7 @@
       <footer
       
 
- <class="footer py-4  ">
+      <class="footer py-4  ">
         <div class="container-fluid">
           <div class="row align-items-center justify-content-lg-between">
             <div class="col-lg-6 mb-lg-0 mb-4">

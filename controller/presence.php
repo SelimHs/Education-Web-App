@@ -1,13 +1,13 @@
 <?php
-require_once '../config.php';
-require_once '../Model/presence.php';
+require_once '../../config.php';
+require_once '../../Model/presence.php';
 
 // Get all presences from the database
 function getAllPresence(){
     $db = config::getConnexion();
     try {
-        $query = $db->prepare("SELECT * FROM presence");
-        $rows = $db->query($query);
+        // No need to prepare the query again, just directly query it
+        $rows = $db->query("SELECT * FROM presence");
         return $rows;
     } catch(PDOException $e) {
         return $e->getMessage();
@@ -19,12 +19,11 @@ function ajouterPresence($presence){
     $db = config::getConnexion();
     $idP = $presence->getIdP();
     $idS = $presence->getIdS();
-    $idE = $presence->getIdE();
     $statut = $presence->getStatut();
     $heureA = $presence->getHeureA();
     try {
         $query = $db->prepare("INSERT INTO presence (idP, idS, idE, statut, heureA)
-            VALUES ('$idP', '$idS', '$idE', '$statut', '$heureA')");
+            VALUES ('$idP', '$idS', '$statut', '$heureA')");
         $query->execute();
     } catch(PDOException $e) {
         return $e->getMessage();
@@ -43,12 +42,11 @@ function getPresence($idP){
 }
 
 // Update a presence by its ID
-function updatePresence($idP, $idS, $idE, $statut, $heureA){
+function updatePresence($idP, $idS, $statut, $heureA){
     $db = config::getConnexion();
     try {
         $query = $db->prepare("UPDATE presence SET 
         idS = '$idS',
-        idE = '$idE',
         statut = '$statut',
         heureA = '$heureA'
         WHERE idP='$idP'");

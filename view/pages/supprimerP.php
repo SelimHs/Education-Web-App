@@ -1,21 +1,22 @@
 <?php
-require_once '../../controller/formation.php';
+require_once '../../controller/presence.php';
 require_once '../../config.php';
 
 // Get database connection
 $db = config::getConnexion();
 
 // Check if the request method is POST
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] == "GET") {
+    
     try {
         // Get the ID of the session to delete
-        $idS = $_POST['idS'];
+        $idP = $_GET['idP'];
         
         // Prepare the SQL statement to delete the session
-        $query = $db->prepare("DELETE FROM formation WHERE idS=:idS");
+        $query = $db->prepare("DELETE FROM presence WHERE idP=:idP");
         
         // Bind the ID parameter
-        $query->bindParam(':idS', $idS);
+        $query->bindParam(':idP', $idP);
         
         // Execute the query
         $query->execute();

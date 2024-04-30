@@ -7,10 +7,29 @@ try {
     $query->execute();
     // Fetch all records as an associative array
     $result = $query->fetchAll();
+
+    // Function to sort sessions by the number of students (nbrE) in descending order
+    function sortSessionsByNbrEDesc($sessions) {
+        // Define a custom comparison function
+        function compareByNbrEDesc($a, $b) {
+            return $b['nbrE'] - $a['nbrE']; // Compare in descending order
+        }
+        
+        // Sort the sessions array using the custom comparison function
+        usort($sessions, 'compareByNbrEDesc');
+        
+        return $sessions;
+    }
+
+    // Sort sessions by the number of students (nbrE) in descending order
+    $result = sortSessionsByNbrEDesc($result);
 } catch (PDOException $e) {
     // Catch any exceptions and display an error message
     echo 'Connection failed: ' . $e->getMessage();
 }
+?>
+<?php
+require_once '../../config.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,6 +49,8 @@ try {
     <![endif]-->
     <style>
         /* Your CSS styles here */
+        <style>
+        /* CSS styles */
         body {
             font-family: 'Arvo', serif;
             background-color: #f7f7f7;
@@ -61,14 +82,9 @@ try {
         td a {
             text-decoration: none;
             color: #007bff;
-            padding: 8px 12px;
-            border-radius: 4px;
-            background-color: #007bff;
-            color: #fff;
-            transition: background-color 0.3s;
         }
         td a:hover {
-            background-color: #0056b3;
+            text-decoration: underline;
         }
         .button-form {
             margin-top: 10px; /* Add margin to separate buttons */
@@ -91,55 +107,30 @@ try {
     </style>
 </head>
 <body>
-<div id="site-content">
-    <header class="site-header">
-        <!-- Your header content here -->
-    </header>
     <div class="container">
-        <div class="page-title">
-            <h2>Your opinion matters!</h2>
-        </div>
-        <!-- Table displaying formation data -->
+        <h2>Formation List</h2>
         <table>
-            <tr>
-                <th>ID Session</th>
-                <th>Type</th>
-                <th>Nom Prof</th>
-                <th>Code</th>
-                <th>Nombre d'étudiants</th>
-                <th>Join</th>
-                <th>Presence</th>  <!-- Ajout de la colonne pour le bouton Join -->
-            </tr>
-            <?php foreach ($result as $row): ?>
-            <tr>
-                <td><?php echo $row['idS']; ?></td>
-                <td><?php echo $row['type']; ?></td>
-                <td><?php echo $row['nomProf']; ?></td>
-                <td><?php echo $row['code']; ?></td>
-                <td><?php echo $row['nbrE']; ?></td>
-                <td><a href="join.php?id=<?php echo $row['idS']; ?>">Join</a></td> <!-- Ajout du bouton Join avec un lien vers la page join.php en passant l'ID de la session -->
-                <td><a href="presence.php?id=<?php echo $row['idS']; ?>">Presence</a></td> <!-- Add a link for the Presence button -->
-                
-            </tr>
-            <?php endforeach; ?>
+            <thead>
+                <tr>
+                    <th>ID Session</th>
+                    <th>Type</th>
+                    <th>Nom Prof</th>
+                    <th>Code</th>
+                    <th>Nombre d'étudiants</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($result as $row): ?>
+                    <tr>
+                        <td><?php echo $row['idS']; ?></td>
+                        <td><?php echo $row['type']; ?></td>
+                        <td><?php echo $row['nomProf']; ?></td>
+                        <td><?php echo $row['code']; ?></td>
+                        <td><?php echo $row['nbrE']; ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
         </table>
-        <!-- Buttons -->
-        <div class="button-form">
-            <form action="http://localhost/gestionSess/view/pages/tri.php" method="post">
-                <input type="submit" name="tri" value="tri">
-            </form>
-            <form action="http://localhost/gestionSess/view/pages/rechercher.php" method="get">
-                <input type="text" name="id" placeholder="Enter ID">
-                <input type="submit" value="Recherche">
-            </form>
-            <form action="http://localhost/gestionSess/view/pages/stat.php" method="get" onsubmit="return validateForm(this);">
-                <input type="submit" value="stat">
-            </form>
-            <form action="http://localhost/gestionSess/view/pages/cal.php" method="get" onsubmit="return validateForm(this);">
-                <input type="submit" value="cal">
-            </form>
-        </div>
     </div>
-</div>
 </body>
 </html>

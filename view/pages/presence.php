@@ -1,9 +1,10 @@
 <?php 
 require_once '../../config.php';
+
 $conn = config::getConnexion();
 try {
-    // Prepare and execute the SQL query to select all records from the 'formation' table
-    $query = $conn->prepare("SELECT * FROM formation");
+    // Prepare and execute the SQL query to select all records from the 'presence' table
+    $query = $conn->prepare("SELECT * FROM presence");
     $query->execute();
     // Fetch all records as an associative array
     $result = $query->fetchAll();
@@ -87,6 +88,15 @@ try {
         .button-form input[type="submit"] {
             font-size: 14px; /* Adjust the font size */
             padding: 5px 10px; /* Adjust the padding */
+            background-color: #007bff; /* Button background color */
+            color: #fff; /* Button text color */
+            border: none; /* Remove button border */
+            border-radius: 4px; /* Add border radius */
+            cursor: pointer; /* Add cursor pointer on hover */
+            transition: background-color 0.3s; /* Smooth transition for background color change */
+        }
+        .button-form input[type="submit"]:hover {
+            background-color: #0056b3; /* Darker background color on hover */
         }
     </style>
 </head>
@@ -102,43 +112,27 @@ try {
         <!-- Table displaying formation data -->
         <table>
             <tr>
-                <th>ID Session</th>
-                <th>Type</th>
-                <th>Nom Prof</th>
-                <th>Code</th>
-                <th>Nombre d'étudiants</th>
-                <th>Join</th>
-                <th>Presence</th>  <!-- Ajout de la colonne pour le bouton Join -->
+                <th>ID Presence</th>
+                <th>Statut</th>
+                <th>heureA</th>
+                <th>ID session</th>
+                <th>Actions</th> <!-- Column for actions -->
             </tr>
             <?php foreach ($result as $row): ?>
             <tr>
+                <td><?php echo $row['idP']; ?></td>
+                <td><?php echo $row['statut']; ?></td>
+                <td><?php echo $row['heureA']; ?></td>
                 <td><?php echo $row['idS']; ?></td>
-                <td><?php echo $row['type']; ?></td>
-                <td><?php echo $row['nomProf']; ?></td>
-                <td><?php echo $row['code']; ?></td>
-                <td><?php echo $row['nbrE']; ?></td>
-                <td><a href="join.php?id=<?php echo $row['idS']; ?>">Join</a></td> <!-- Ajout du bouton Join avec un lien vers la page join.php en passant l'ID de la session -->
-                <td><a href="presence.php?id=<?php echo $row['idS']; ?>">Presence</a></td> <!-- Add a link for the Presence button -->
-                
+                <td>
+                    <!-- Edit button -->
+                    <a href="modifierP.php?id=<?php echo $row['idP']; ?>" style="margin-right: 5px;">Modifier</a>
+                    <!-- Delete button -->
+                    <a href="supprimerP.php?idP=<?php echo $row['idP']; ?>" style="background-color: #dc3545;">Supprimer</a>
+                </td>
             </tr>
             <?php endforeach; ?>
         </table>
-        <!-- Buttons -->
-        <div class="button-form">
-            <form action="http://localhost/gestionSess/view/pages/tri.php" method="post">
-                <input type="submit" name="tri" value="tri">
-            </form>
-            <form action="http://localhost/gestionSess/view/pages/rechercher.php" method="get">
-                <input type="text" name="id" placeholder="Enter ID">
-                <input type="submit" value="Recherche">
-            </form>
-            <form action="http://localhost/gestionSess/view/pages/stat.php" method="get" onsubmit="return validateForm(this);">
-                <input type="submit" value="stat">
-            </form>
-            <form action="http://localhost/gestionSess/view/pages/cal.php" method="get" onsubmit="return validateForm(this);">
-                <input type="submit" value="cal">
-            </form>
-        </div>
     </div>
 </div>
 </body>
