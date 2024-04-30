@@ -68,46 +68,64 @@
 
             <header>Sign Up</header>
     <form  action="../View/register.php" method="POST" class="form-container">
-                <div style="display: flex;">
-                        <!-- Partie gauche du formulaire -->
-                        <div style="flex: 1; padding-right: 10px;">
-                            <label for="Surname">Surname:</label><br>
-                            <input type="text" id="Surname" name="Surname" required style="margin-bottom: 10px;"><br>
-                            <label for="FirstName">FirstName:</label><br>
-                            <input type="text" id="FirstName" name="FirstName" required style="margin-bottom: 10px;"><br>
-                            <label for="Password">Password:</label><br>
-                            <input type="password" id="Password" name="Password" required style="margin-bottom: 10px;"><br>
-                            <label for="PasswordC">Password Confirmation:</label><br>
-                            <input type="password" id="PasswordC" name="PasswordC" required style="margin-bottom: 10px;"><br>
-                        </div>
-                        <!-- Partie droite du formulaire -->
-                        <div style="flex: 1; padding-left: 10px
-                        ;">
-                            <label for="Genre">Genre:</label><br>
-                            <select id="Genre" name="Genre" style="margin-bottom: 10px;">
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
-                            </select><br>
-                            <label for="Email">Email:</label><br>
-                            <input type="email" id="Email" name="Email" required style="margin-bottom: 10px;"><br>
-                            <label for="Tel">Tel:</label><br>
-                            <input type="tel" id="Tel" name="Tel" required style="margin-bottom: 10px;"><br>
-                            <label for="Function">Function:</label><br>
-                            <input type="text" id="Function" name="Function" required style="margin-bottom: 10px;"><br>
-                        </div>
-                    </div>
-            
-                    <div class="btn-container">
-        <input type="submit" value="Sign up" >
-        <input type="reset" value="Reset" >
-    </div>
+        <div style="display: flex;">
+            <!-- Partie gauche du formulaire -->
+            <div style="flex: 1; padding-right: 10px;">
+                <label for="Surname">Surname:</label><br>
+                <input type="text" id="Surname" name="Surname" style="margin-bottom: 10px;"><br>
+                <span id="errorSurname" class="error"></span>
+    
+                <label for="FirstName">FirstName:</label><br>
+                <input type="text" id="FirstName" name="FirstName" style="margin-bottom: 10px;"><br>
+                <span id="errorFirstName" class="error"></span>
+    
+                <label for="Password">Password:</label><br>
+                <input type="password" id="Password" name="Password" style="margin-bottom: 10px;"><br>
+                <span id="errorPassword" class="error"></span>
+    
+                <label for="PasswordC">Password Confirmation:</label><br>
+                <input type="password" id="PasswordC" name="PasswordC" style="margin-bottom: 10px;"><br>
+                <span id="errorPasswordC" class="error"></span>
+            </div>
+            <!-- Partie droite du formulaire -->
+            <div style="flex: 1; padding-left: 10px;">
+                <label for="Genre">Genre:</label><br>
+                <select id="Genre" name="Genre" style="margin-bottom: 10px;">
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select><br>
+    
+                <label for="Email">Email:</label><br>
+                <input type="email" id="Email" name="Email" style="margin-bottom: 10px;"><br>
+                <span id="errorEmail" class="error"></span>
+    
+                <label for="Age">Age:</label><br>
+                <input type="number" id="Age" name="Age" style="margin-bottom: 10px;"><br>
+                <span id="errorAge" class="error"></span>
+    
+                <input type="hidden" id="Function" name="Function" value="user">
 
-                <div class="links">
-                    Already a member? <a href="../front/se_connecter.html">Sign In</a>
-                </div>
-            </form>
+                <input type="hidden" id="code" name="code" >
+    
+                <!-- Champ hidden pour l'attribut Status -->
+                <input type="hidden" id="Status" name="Status" value="0">
+                <input type="hidden" id="editBlockedUntil" name="blocked_until" value="<?php echo $user['blocked_until'] ?? 'default_value_here'; ?>" />
+
+
+            </div>
         </div>
-    </div>
+                
+                        <div class="btn-container">
+            <input type="submit" value="Sign up" >
+            <input type="reset" value="Reset" >
+        </div>
+    
+                    <div class="links">
+                        Already a member? <a href="se_connecter.html">Sign In</a>
+                    </div>
+                </form>
+            </div>
+        </div>
 
 
 

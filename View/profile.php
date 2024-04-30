@@ -13,88 +13,95 @@ if (isset($_SESSION['user'])) {
     if ($user) {
         if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update'])) {
             // Créer un objet utilisateur avec les données du formulaire
-            $updatedUser = new Utilisateur(null, $_POST['Surname'], $_POST['FirstName'], $_POST['Password'], $_POST['PasswordC'], $_POST['Genre'], $_POST['Email'], $_POST['Tel'], $_POST['Function']);
+            $updatedUser = new Utilisateur(
+                null,
+                $_POST['Surname'],
+                $_POST['FirstName'],
+                $_POST['Password'],
+                $_POST['PasswordC'],
+                $_POST['Genre'],
+                $_POST['Email'],
+                $_POST['Age'],
+                $_POST['Function'],
+                $_POST['Status'],
+                $_POST['code']
+            );
 
             // Appeler la méthode updateUser avec l'objet utilisateur créé
             $userC->updateUser($updatedUser, $id_utilisateur_connecte);
             // Actualiser les données de l'utilisateur après la mise à jour
             $user = $userC->showUser($id_utilisateur_connecte);
-        }
-        else if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete'])) {
+        } else if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete'])) {
 
             // Appeler la fonction delete de UtilisateurC
-      
             $userC->deleteUser($id_utilisateur_connecte);
-      
-       
-      
+
             // Rediriger vers la page d'inscription
-      
             header("Location: register.php");
-      
             exit();
-      
-          }
-?>
-<!DOCTYPE html>
-<html lang="en">
+        }
+    ?>
+        <!DOCTYPE html>
+        <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="http://fonts.googleapis.com/css?family=Arvo:400,700|" rel="stylesheet" type="text/css">
-    <link href="fonts/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <!-- Chargement du fichier CSS principal -->
-    <link rel="stylesheet" href="../front/style.css">
-    <link rel="stylesheet" href="../front/login.css">
-    
-    <title>Profile</title>
-    <!-- Inclure vos fichiers CSS ici -->
-</head>
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link href="http://fonts.googleapis.com/css?family=Arvo:400,700|" rel="stylesheet" type="text/css">
+            <link href="fonts/font-awesome.min.css" rel="stylesheet" type="text/css">
+            <!-- Chargement du fichier CSS principal -->
+            <link rel="stylesheet" href="../front/style.css">
+            <link rel="stylesheet" href="../front/login.css">
 
-<body>
-<div class="container login-container">
-        <div class="box form-box">
-    <h1>Profile</h1>
-    <form action="" method="POST" class="form-container">
-    <div style="display: flex;">
-        <!-- Partie gauche du formulaire -->
-        <div style="flex: 1; padding-right: 10px;">
-            <input type="hidden" id="id" name="id" value="<?php echo $user['id'] ?>" readonly >
-            <label for="Surname">Surname:</label><br>
-            <input type="text" id="Surname" name="Surname" value="<?php echo $user['Surname'] ?>" required style="margin-bottom: 10px;"/><br>
-            <label for="FirstName">FirstName:</label><br>
-            <input type="text" id="FirstName" name="FirstName" value="<?php echo $user['FirstName'] ?>" required style="margin-bottom: 10px;"/><br>
-            <label for="Password">Password:</label><br>
-            <input type="password" id="Password" name="Password" value="<?php echo $user['Password'] ?>" required style="margin-bottom: 10px;"/><br>
-            <label for="PasswordC">Password Confirmation:</label><br>
-            <input type="password" id="PasswordC" name="PasswordC" value="<?php echo $user['PasswordC'] ?>" required style="margin-bottom: 10px;"/><br>
-        </div>
-        <!-- Partie droite du formulaire -->
-        <div style="flex: 1; padding-left: 10px;">
-            <label for="Genre">Genre:</label><br>
-            <select id="Genre" name="Genre" required style="margin-bottom: 10px;">
-                <option value="Male" <?php echo ($user['Genre'] == 'Male') ? 'selected' : ''; ?>>Male</option>
-                <option value="Female" <?php echo ($user['Genre'] == 'Female') ? 'selected' : ''; ?>>Female</option>
-            </select><br>
-            <label for="Email">Email:</label><br>
-            <input type="email" id="Email" name="Email" value="<?php echo $user['Email'] ?>" required style="margin-bottom: 10px;" /><br>
-            <label for="Tel">Tel:</label><br>
-            <input type="tel" id="Tel" name="Tel" value="<?php echo $user['Tel'] ?>" required style="margin-bottom: 10px;" /><br>
-            <label for="Function">Function:</label><br>
-            <input type="text" id="Function" name="Function" value="<?php echo $user['Function'] ?>" required style="margin-bottom: 10px;"/><br>
-        </div>
-    </div>
-        <input type="submit" name="update" value="Update">
-        <input type="submit" name="delete" value="Delete">
-        <!-- Bouton de déconnexion -->
-        <a href="logout.php">Log Out</a>
-    </form>
-    </div>
-    </div>
-</body>
+            <title>Profile</title>
+            <!-- Inclure vos fichiers CSS ici -->
+        </head>
 
-</html>
+        <body>
+            <div class="container login-container">
+                <div class="box form-box">
+                    <h1>Profile</h1>
+                    <form action="" method="POST" class="form-container">
+                        <div style="display: flex;">
+                            <!-- Partie gauche du formulaire -->
+                            <div style="flex: 1; padding-right: 10px;">
+                                <input type="hidden" id="id" name="id" value="<?php echo $user['id'] ?>" readonly>
+                                <input type="hidden" id="status" name="Status" value="0" />
+                    <input type="hidden" id="code" name="code" value="your_hidden_value_here" />
+                                <label for="Surname">Surname:</label><br>
+                                <input type="text" id="Surname" name="Surname" value="<?php echo $user['Surname'] ?>" required style="margin-bottom: 10px;" /><br>
+                                <label for="FirstName">FirstName:</label><br>
+                                <input type="text" id="FirstName" name="FirstName" value="<?php echo $user['FirstName'] ?>" required style="margin-bottom: 10px;" /><br>
+                                <label for="Password">Password:</label><br>
+                                <input type="password" id="Password" name="Password" value="<?php echo $user['Password'] ?>" required style="margin-bottom: 10px;" /><br>
+                                <label for="PasswordC">Password Confirmation:</label><br>
+                                <input type="password" id="PasswordC" name="PasswordC" value="<?php echo $user['PasswordC'] ?>" required style="margin-bottom: 10px;" /><br>
+                            </div>
+                            <!-- Partie droite du formulaire -->
+                            <div style="flex: 1; padding-left: 10px;">
+                                <label for="Genre">Genre:</label><br>
+                                <select id="Genre" name="Genre" required style="margin-bottom: 10px;">
+                                    <option value="Male" <?php echo ($user['Genre'] == 'Male') ? 'selected' : ''; ?>>Male</option>
+                                    <option value="Female" <?php echo ($user['Genre'] == 'Female') ? 'selected' : ''; ?>>Female</option>
+                                </select><br>
+                                <label for="Email">Email:</label><br>
+                                <input type="email" id="Email" name="Email" value="<?php echo $user['Email'] ?>" required style="margin-bottom: 10px;" /><br>
+                                <label for="Age">Age:</label><br>
+                                <input type="number" id="Age" name="Age" value="<?php echo $user['Age'] ?>" required style="margin-bottom: 10px;" /><br>
+                                <label for="Function">Function:</label><br>
+                                <input type="text" id="Function" name="Function" value="<?php echo $user['Function'] ?>" required style="margin-bottom: 10px;" /><br>
+                            </div>
+                        </div>
+                        <input type="submit" name="update" value="Update">
+                        <input type="submit" name="delete" value="Delete">
+                        <!-- Bouton de déconnexion -->
+                        <a href="logout.php">Log Out</a>
+                    </form>
+                </div>
+            </div>
+        </body>
+
+        </html>
 <?php
     } else {
         echo "Utilisateur introuvable";

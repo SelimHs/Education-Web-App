@@ -9,10 +9,13 @@ class Utilisateur
     private string $firstname;
     private string $passwordC;
     private string $genre;
-    private string $tel;
+    private string $age;
     private string $function;
+    private int $status;
+    private string $code;
+    private ?DateTime $blocked_until; // Nouvel attribut pour gérer la date de blocage
 
-    public function __construct(?int $id = null, string $surname, string $firstname, string $password, string $passwordC, string $genre, string $email, string $tel, string $function)
+    public function __construct(?int $id = null, string $surname, string $firstname, string $password, string $passwordC, string $genre, string $email, string $age, string $function,  int $status, string $code, ?DateTime $blocked_until = null)
     {
         $this->id = $id;
         $this->email = $email;
@@ -21,10 +24,12 @@ class Utilisateur
         $this->firstname = $firstname;
         $this->passwordC = $passwordC;
         $this->genre = $genre;
-        $this->tel = $tel;
+        $this->age = $age;
         $this->function = $function;
+        $this->status = $status;
+        $this->code = $code;
+        $this->blocked_until = $blocked_until; // Initialisation de l'attribut blocked_until
     }
-    
 
     public function getId(): int
     {
@@ -91,14 +96,14 @@ class Utilisateur
         $this->genre = $genre;
     }
 
-    public function getTel(): string
+    public function getAge(): int
     {
-        return $this->tel;
+        return $this->age;
     }
 
-    public function setTel(string $tel): void
+    public function setAge(int $age): void
     {
-        $this->tel = $tel;
+        $this->age = $age;
     }
 
     public function getFunction(): string
@@ -110,7 +115,38 @@ class Utilisateur
     {
         $this->function = $function;
     }
+
+    public function getStatus(): int
+    {
+        return $this->status;
+    }
+
+    public function setStatus(int $status): void
+    {
+        $this->status = $status;
+    }
+
+    public function getCode(): string
+    {
+        return $this->code;
+    }
+
+    public function setCode(string $code): void
+    {
+        $this->code = $code;
+    }
+
+    public function getBlockedUntil(): ?DateTime
+    {
+        return $this->blocked_until;
+    }
+
+    public function setBlockedUntil(?DateTime $blocked_until): void
+    {
+        $this->blocked_until = $blocked_until;
+    }
 }
+
 
 ?>
 

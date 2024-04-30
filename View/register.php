@@ -17,9 +17,12 @@ if (
     isset($_POST["PasswordC"]) &&
     isset($_POST["Genre"]) &&
     isset($_POST["Email"]) &&
-    isset($_POST["Tel"]) &&
-    isset($_POST["Function"])
+    isset($_POST["Age"]) &&
+    isset($_POST["Function"])&&
+    isset($_POST["Status"])&&
+    isset($_POST["code"])
 ) {
+    //var_dump($_POST);
     if (
         !empty($_POST['Surname']) &&
         !empty($_POST["FirstName"]) &&
@@ -27,8 +30,9 @@ if (
         !empty($_POST["PasswordC"]) &&
         !empty($_POST["Genre"]) &&
         !empty($_POST["Email"]) &&
-        !empty($_POST["Tel"]) &&
-        !empty($_POST["Function"])
+        !empty($_POST["Age"]) &&
+        !empty($_POST["Function"])&&
+        isset($_POST["code"])
     ) {
         
         $user = new Utilisateur(
@@ -39,8 +43,10 @@ if (
             $_POST['PasswordC'],
             $_POST['Genre'],
             $_POST['Email'],
-            $_POST['Tel'],
-            $_POST['Function']
+            $_POST['Age'],
+            $_POST['Function'],
+            $_POST['Status'],
+            $_POST['code']
         );
        
         header("Location: ../front/se_connecter.html");
@@ -76,17 +82,7 @@ if (
 <body >
    
     <hr>
-    <?php if (!empty($error)) : ?>
-        <div style="color: red;"><?php echo $error; ?></div>
-    <?php endif; ?>
-    <?php if (!empty($success)) : ?>
-        <div style="color: green;"><?php echo $success; ?></div>
-        <script>
-            setTimeout(function() {
-                window.location.href = 'listUser.php';
-            }, 2000); // Rediriger après 2 secondes
-        </script>
-    <?php endif; ?>
+   
     <div class="container login-container">
         <div class="box form-box">
         
@@ -95,42 +91,52 @@ if (
 
 
             <header>Sign Up</header>
-    <form  action="" method="POST" class="form-container" id="userForm" onsubmit="return validateForm(event)">
-                <div style="display: flex;">
-                        <!-- Partie gauche du formulaire -->
-                        <div style="flex: 1; padding-right: 10px;">
-                            <label for="Surname">Surname:</label><br>
-                            <input type="text" id="Surname" name="Surname"  style="margin-bottom: 10px;"><br>
-                            <span id="errorSurname" class="error"></span><br><br>
+            <form action="" method="POST" class="form-container" id="userForm" onsubmit="return validateForm(event);">
+    <div style="display: flex;">
+        <!-- Partie gauche du formulaire -->
+        <div style="flex: 1; padding-right: 10px;">
+            <label for="Surname">Surname:</label><br>
+            <input type="text" id="Surname" name="Surname" style="margin-bottom: 10px;"><br>
+            <span id="errorSurname" class="error"></span>
 
-                            <label for="FirstName">FirstName:</label><br>
-                            <input type="text" id="FirstName" name="FirstName"  style="margin-bottom: 10px;"><br>
-                            <span id="errorFirstName" class="error"></span><br><br>
-                            <label for="Password">Password:</label><br>
-                            <input type="password" id="Password" name="Password"  style="margin-bottom: 10px;"><br>
-                            <span id="errorPassword" class="error"></span><br><br>
+            <label for="FirstName">FirstName:</label><br>
+            <input type="text" id="FirstName" name="FirstName" style="margin-bottom: 10px;"><br>
+            <span id="errorFirstName" class="error"></span>
 
-                            <label for="PasswordC">Password Confirmation:</label><br>
-                            <input type="text" id="PasswordC" name="PasswordC"  style="margin-bottom: 10px;"><br>
-                            <span id="errorPasswordC" class="error"></span><br><br>
-                        </div>
-                        <!-- Partie droite du formulaire -->
-                        <div style="flex: 1; padding-left: 10px;">
-                            <label for="Genre">Genre:</label><br>
-                            <select id="Genre" name="Genre" style="margin-bottom: 10px;">
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
-                            </select><br>
-                            <label for="Email">Email:</label><br>
-                            <input type="email" id="Email" name="Email"  style="margin-bottom: 10px;"><br>
-                            <span id="errorEmail" class="error"></span><br><br>
-                            <label for="Tel">Tel:</label><br>
-                            <input type="tel" id="Tel" name="Tel"  style="margin-bottom: 10px;"><br>
-                            <span id="errorTel" class="error"></span><br><br>
-                            <label for="Function">Function:</label><br>
-                            <input type="text" id="Function" name="Function"  style="margin-bottom: 10px;"><br>
-                        </div>
-                    </div>
+            <label for="Password">Password:</label><br>
+            <input type="password" id="Password" name="Password" style="margin-bottom: 10px;"><br>
+            <span id="errorPassword" class="error"></span>
+
+            <label for="PasswordC">Password Confirmation:</label><br>
+            <input type="password" id="PasswordC" name="PasswordC" style="margin-bottom: 10px;"><br>
+            <span id="errorPasswordC" class="error"></span>
+        </div>
+        <!-- Partie droite du formulaire -->
+        <div style="flex: 1; padding-left: 10px;">
+            <label for="Genre">Genre:</label><br>
+            <select id="Genre" name="Genre" style="margin-bottom: 10px;">
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select><br>
+
+            <label for="Email">Email:</label><br>
+            <input type="email" id="Email" name="Email" style="margin-bottom: 10px;"><br>
+            <span id="errorEmail" class="error"></span>
+
+            <label for="Age">Age:</label><br>
+            <input type="number" id="Age" name="Age" style="margin-bottom: 10px;"><br>
+            <span id="errorAge" class="error"></span>
+
+            <input type="hidden" id="Function" name="Function" value="user">
+
+            <input type="hidden" id="code" name="code" >
+
+            <!-- Champ hidden pour l'attribut Status -->
+            <input type="hidden" id="Status" name="Status" value="0">
+            <input type="hidden" id="editBlockedUntil" name="blocked_until" value="<?php echo $user['blocked_until'] ?? 'default_value_here'; ?>" />
+
+        </div>
+    </div>
             
                     <div class="btn-container">
         <input type="submit" value="Sign up" >
@@ -138,7 +144,7 @@ if (
     </div>
 
                 <div class="links">
-                    Already a member? <a href="../front/se_connecter.html">Sign In</a>
+                    Already a member? <a href="se_connecter.php">Sign In</a>
                 </div>
             </form>
         </div>
@@ -154,7 +160,7 @@ if (
     var PasswordC = document.getElementById("PasswordC").value.trim();
    
     var Email = document.getElementById("Email").value.trim();
-    var Tel = document.getElementById("Tel").value.trim();
+    var Age = document.getElementById("Age").value.trim();
    
     var isValid = true;
 
@@ -180,14 +186,10 @@ if (
     } else if (Password.length < 6 || Password.length > 10) {
         isValid = false;
         document.getElementById("errorPassword").innerHTML = "Password must be between 6 and 10 characters.";
-    } else if (!/\d/.test(Password)) {
-        isValid = false;
-        document.getElementById("errorPassword").innerHTML = "Password must contain at least one digit.";
     } else {
         document.getElementById("errorPassword").innerHTML = "";
     }
-
-    // Validation de la confirmation du Password
+    // Validation du PasswordC
     if (PasswordC === "") {
         isValid = false;
         document.getElementById("errorPasswordC").innerHTML = "Please fill in the Password Confirmation field.";
@@ -197,38 +199,43 @@ if (
     } else {
         document.getElementById("errorPasswordC").innerHTML = "";
     }
+    
 
-    // Validation du Email
+    // Validation de l'Email
     if (Email === "") {
         isValid = false;
         document.getElementById("errorEmail").innerHTML = "Please fill in the Email field.";
-    } else if (!/\S+@\S+\.\S+/.test(Email)) {
+    } else if (!validateEmail(Email)) {
         isValid = false;
         document.getElementById("errorEmail").innerHTML = "Please enter a valid email address.";
     } else {
         document.getElementById("errorEmail").innerHTML = "";
     }
 
-    // Validation du Tel
-    if (Tel === "") {
+    // Validation de l'Age
+    if (Age === "") {
         isValid = false;
-        document.getElementById("errorTel").innerHTML = "Please fill in the Tel field.";
-    } else if (!/^\d{8}$/.test(Tel)) {
+        document.getElementById("errorAge").innerHTML = "Please fill in the Age field.";
+    } else if (Age < 18 || Age > 100) {
         isValid = false;
-        document.getElementById("errorTel").innerHTML = "Please enter a valid phone number (8 digits).";
+        document.getElementById("errorAge").innerHTML = "Age must be between 18 and 100.";
     } else {
-        document.getElementById("errorTel").innerHTML = "";
+        document.getElementById("errorAge").innerHTML = "";
     }
 
    
 
     if (!isValid) {
-        event.preventDefault(); // Empêcher la soumission du formulaire si la validation échoue
+        event.preventDefault();
     }
 
     return isValid;
-} 
-        document.getElementById("userForm").addEventListener("submit", validateForm);
+}
+
+function validateEmail(email) {
+    var re = /\S+@\S+\.\S+/;
+    return re.test(email);
+}
     </script>
 
 </body>

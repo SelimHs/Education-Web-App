@@ -96,7 +96,7 @@ form label {
     font-size: 16px; /* Taille de police */
 }
 form input[type="email"],
-form input[type="tel"],
+form input[type="number"],
 form input[type="text"],
 form input[type="password"],
 form select,
