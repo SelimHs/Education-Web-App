@@ -407,11 +407,23 @@
               <button type="submit" class="btn btn-primary mb-3">Search</button>
             </div>
           </form>
-        <div class="col-auto">
-          <form action="stat.php" method="get" onsubmit="return validateForm(this);">
-          <button type="submit" class="btn btn-primary mb-3">Stat</button>
+          <div class="col-auto">
+          <form action="resultatPDF.php" method="get">
+         <button type="submit" class="btn btn-primary mb-3">Export to PDF</button>
           </form>
-        </div>  
+          <div class="text-center mt-4">
+        <button id="showStatsBtn" class="btn btn-primary">Show Statistics</button>
+    </div>
+
+    <!-- Script to handle the click event and display statistics -->
+    <script>
+        // Function to handle the click event
+        document.getElementById('showStatsBtn').addEventListener('click', function() {
+            // Redirect to the page where you want to display statistics
+            window.location.href = 'statResultat.php';
+        });
+    </script>
+</div>
         </div>
             <div class="card-body px-0 pb-2">
               <div class="table-responsive p-0">

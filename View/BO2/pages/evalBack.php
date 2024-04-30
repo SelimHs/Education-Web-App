@@ -413,7 +413,19 @@
               <button type="submit" class="btn btn-primary mb-3">Search</button>
             </div>
           </form>
+          <div class="col-auto">
+          <form action="stat.php" method="get" onsubmit="return validateForm(this);">
+          <button type="submit" class="btn btn-primary mb-3">Course Statistics</button>
+          </form>
+        </div>  
+        <div class="col-auto">
+    <form action="evalPDF.php" method="get">
+        <button type="submit" class="btn btn-primary mb-3">Export to PDF</button>
+    </form>
+</div>
+        </div>  
         </div>
+
             <div class="card-body px-0 pb-2">
               <div class="table-responsive p-0">
             
