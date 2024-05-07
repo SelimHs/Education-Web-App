@@ -6,7 +6,7 @@ require_once 'sms.php';
 // Supposons que vous récupérez le numéro de téléphone de l'utilisateur à partir d'une variable $phoneNumber
 
 // Appeler la fonction sendSMS pour envoyer la notification SMS
-$phoneNumber = '21625989919'; // Remplacez ceci par le numéro de téléphone réel
+$phoneNumber = '+21654476992'; // Remplacez ceci par le numéro de téléphone réel
 sendSMS($phoneNumber);
 ?>
 

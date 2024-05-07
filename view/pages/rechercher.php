@@ -78,45 +78,48 @@ require_once '../../config.php';
 </head>
 <body>
 <div class="container">
+
     <?php
-    // Check if ID is provided
-    if(isset($_GET['id']) && !empty($_GET['id'])) {
-        $id = $_GET['id'];
+    // Check if nomProf is provided
+    if(isset($_GET['nomProf']) && !empty($_GET['nomProf'])) {
+        $nomProf = $_GET['nomProf'];
 
         try {
             // Establish connection to the database
             $conn = config::getConnexion();
 
-            // Prepare and execute the SQL query to select record based on provided ID
-            $query = $conn->prepare("SELECT * FROM formation WHERE idS = :id");
-            $query->bindParam(':id', $id);
+            // Prepare and execute the SQL query to select record based on provided nomProf
+            $query = $conn->prepare("SELECT * FROM formation WHERE nomProf = :nomProf");
+            $query->bindParam(':nomProf', $nomProf);
             $query->execute();
 
-            // Fetch the record as an associative array
-            $result = $query->fetch();
+            // Fetch the records as an associative array
+            $results = $query->fetchAll();
 
-            // Check if record is found
-            if($result) {
+            // Check if records are found
+            if($results) {
                 // Display the information in a table
                 echo '<table>';
                 echo '<tr><th>ID Session</th><th>Type</th><th>Nom Prof</th><th>Code</th><th>Nombre d\'étudiants</th></tr>';
-                echo '<tr>';
-                echo '<td>' . $result['idS'] . '</td>';
-                echo '<td>' . $result['type'] . '</td>';
-                echo '<td>' . $result['nomProf'] . '</td>';
-                echo '<td>' . $result['code'] . '</td>';
-                echo '<td>' . $result['nbrE'] . '</td>';
-                echo '</tr>';
+                foreach ($results as $row) {
+                    echo '<tr>';
+                    echo '<td>' . $row['idS'] . '</td>';
+                    echo '<td>' . $row['type'] . '</td>';
+                    echo '<td>' . $row['nomProf'] . '</td>';
+                    echo '<td>' . $row['code'] . '</td>';
+                    echo '<td>' . $row['nbrE'] . '</td>';
+                    echo '</tr>';
+                }
                 echo '</table>';
             } else {
-                echo '<p>No record found with ID: ' . $id . '</p>';
+                echo '<p>No records found for Professor: ' . $nomProf . '</p>';
             }
         } catch (PDOException $e) {
             // Catch any exceptions and display an error message
             echo '<p>Connection failed: ' . $e->getMessage() . '</p>';
         }
     } else {
-        echo '<p>Please provide an ID for search.</p>';
+        echo '<p>Please provide a Professor name for search.</p>';
     }
     ?>
 </div>

@@ -1,6 +1,6 @@
 <?php
 function sendSMS($phoneNumber) {
-    $url = 'https://w1e3ed.api.infobip.com/sms/2/text/advanced';
+    $url = 'https://dkgez8.api.infobip.com/sms/2/text/advanced';
 
     // Prepare the request body
     $data = array(
@@ -17,7 +17,7 @@ function sendSMS($phoneNumber) {
     // Set headers
     $headers = array(
         'Content-Type: application/json',
-        'Authorization: App 963b96b6382c85fa7bfa77343f9b9a5d-05144f00-88ef-4470-a4dd-9ef125f003fa',
+        'Authorization: App 8441a0b21efc55612049385ea8d402d1-e941a44e-6d6f-4362-b888-2635786c524b',
         'Accept: application/json'
     );
 

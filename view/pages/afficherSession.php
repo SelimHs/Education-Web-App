@@ -129,14 +129,25 @@ try {
                 <input type="submit" name="tri" value="tri">
             </form>
             <form action="http://localhost/gestionSess/view/pages/rechercher.php" method="get">
-                <input type="text" name="id" placeholder="Enter ID">
-                <input type="submit" value="Recherche">
+                <form action="" method="GET">
+        <input type="text" id="nomProf" name="nomProf">
+        <input type="submit" value="Search">
+    </form>
             </form>
             <form action="http://localhost/gestionSess/view/pages/stat.php" method="get" onsubmit="return validateForm(this);">
                 <input type="submit" value="stat">
             </form>
             <form action="http://localhost/gestionSess/view/pages/cal.php" method="get" onsubmit="return validateForm(this);">
                 <input type="submit" value="cal">
+            </form>
+            <form action="http://localhost/gestionSess/view/pages/filtrage.php" method="get">
+                <select name="filterType" id="filterType">
+        <option value="">All</option>
+        <option value="francais">Francais</option>
+        <option value="web">Web</option>
+        <option value="math">Math</option>
+    </select>
+                <input type="submit" value="filtrage">
             </form>
         </div>
     </div>
