@@ -34,7 +34,7 @@ try {
 
     $mail->isHTML(true);                                 
     $mail->Subject = 'Password Reset';
-    $mail->Body    = 'To reset your password click <a href="http://localhost/2A/projetWeb/View/change_password.php?code='.$code.'">here </a>. </br>Reset your password in a day.';
+    $mail->Body    = 'To reset your password click <a href="http://localhost/2A/projetWeb2/View/change_password.php?code='.$code.'">here </a>. </br>Reset your password in a day.';
 
     // Utiliser PDO pour les requêtes SQL
     $conn = new PDO('mysql:host=localhost;dbname=projet', 'root', '');
@@ -51,7 +51,8 @@ try {
         $codeQuery->execute();
             
         $mail->send();
-        echo 'Message has been sent, check your email';
+        echo "<div style='color: black; text-align: center; margin-top: 20px; font-size: 24px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);'>Message has been sent, check your email</div>";
+
     }
 
     $conn = null;

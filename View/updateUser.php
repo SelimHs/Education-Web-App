@@ -15,7 +15,7 @@ if (
     isset($_POST["Genre"]) &&
     isset($_POST["Email"]) &&
     isset($_POST["Age"]) &&
-    isset($_POST["Function"]) &&
+    isset($_POST["function"]) &&
     isset($_POST["Status"]) &&
     isset($_POST["code"])
 ) {
@@ -27,7 +27,7 @@ if (
         !empty($_POST["Genre"]) &&
         !empty($_POST["Email"]) &&
         !empty($_POST["Age"]) &&
-        !empty($_POST["Function"])&&
+        !empty($_POST["function"])&&
         isset($_POST["code"])
     ) {
         $user = new Utilisateur(
@@ -39,14 +39,14 @@ if (
             $_POST['Genre'],
             $_POST['Email'],
             $_POST['Age'],
-            $_POST['Function'],
+            $_POST['function'],
             $_POST['Status'],
             $_POST['code']
         );
 
         $userC->updateUser($user, $_POST['id']);
 
-        header('Location:listUser.php');
+        header('Location:../back/pages/tables.php');
         exit();
     } else {
         $error = "Missing information";
@@ -65,7 +65,7 @@ if (
 </head>
 
 <body>
-    <button><a href="listUser.php">Back to list</a></button>
+    <button><a href="../back/pages/tables.php">Back to list</a></button>
 
     <hr>
 
@@ -104,8 +104,8 @@ if (
                     <input type="email" id="editEmail" name="Email" value="<?php echo $user['Email'] ?>" style="margin-bottom: 10px;" /><br>
                     <label for="editAge">Age:</label><br>
                     <input type="number" id="editAge" name="Age" value="<?php echo $user['Age'] ?>" style="margin-bottom: 10px;" /><br>
-                    <label for="editFunction">Function:</label><br>
-                    <input type="text" id="editFunction" name="Function" value="<?php echo $user['Function'] ?>" style="margin-bottom: 10px;" /><br>
+                    <label for="editfunction">Function:</label><br>
+                    <input type="text" id="editfunction" name="function" value="<?php echo $user['function'] ?>" style="margin-bottom: 10px;" /><br>
                 </div>
             </div>
             <div class="btn-container">

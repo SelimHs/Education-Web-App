@@ -44,7 +44,7 @@
                             <li class="menu-item"><a href="contact.html">Contact</a></li>
                             <li class="menu-item"><a href="se_connecter.html">Se connecter</a></li>
                             <li class="menu-item"><a href="sinscrire.html">S'inscrire</a></li>
-                            <li class="menu-item"><a href="profile.html">Profile</a></li>
+                            <li class="menu-item"><a href="profile.php">Profile</a></li>
 
                         </ul> <!-- .menu -->
                     </div> <!-- .main-navigation -->
@@ -103,20 +103,21 @@
                 <input type="number" id="Age" name="Age" style="margin-bottom: 10px;"><br>
                 <span id="errorAge" class="error"></span>
     
-                <input type="hidden" id="Function" name="Function" value="user">
+                <input type="hidden" id="function" name="function" value="user">
 
                 <input type="hidden" id="code" name="code" >
     
                 <!-- Champ hidden pour l'attribut Status -->
                 <input type="hidden" id="Status" name="Status" value="0">
-                <input type="hidden" id="editBlockedUntil" name="blocked_until" value="<?php echo $user['blocked_until'] ?? 'default_value_here'; ?>" />
+                <input type="hidden" id="editBlockedUntil" name="blocked_until" value="<?php echo $user->blocked_until ?? 'default_value_here'; ?>" />
+
 
 
             </div>
         </div>
                 
                         <div class="btn-container">
-            <input type="submit" value="Sign up" >
+            <input type="submit" value="Sign up" name="sign" >
             <input type="reset" value="Reset" >
         </div>
     

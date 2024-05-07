@@ -18,7 +18,7 @@ if (
     isset($_POST["Genre"]) &&
     isset($_POST["Email"]) &&
     isset($_POST["Age"]) &&
-    isset($_POST["Function"])&&
+    isset($_POST["function"])&&
     isset($_POST["Status"])&&
     isset($_POST["code"])
 ) {
@@ -31,7 +31,7 @@ if (
         !empty($_POST["Genre"]) &&
         !empty($_POST["Email"]) &&
         !empty($_POST["Age"]) &&
-        !empty($_POST["Function"])&&
+        !empty($_POST["function"])&&
         isset($_POST["code"])
     ) {
         
@@ -44,7 +44,7 @@ if (
             $_POST['Genre'],
             $_POST['Email'],
             $_POST['Age'],
-            $_POST['Function'],
+            $_POST['function'],
             $_POST['Status'],
             $_POST['code']
            
@@ -78,7 +78,7 @@ if (
 </head>
 
 <body >
-    <a href="listUser.php">Back to list </a>
+    <a href="../back/pages/tables.php">Back to list </a>
     <hr>
     <?php if (!empty($error)) : ?>
         <div style="color: red;"><?php echo $error; ?></div>
@@ -87,7 +87,7 @@ if (
         <div style="color: green;"><?php echo $success; ?></div>
         <script>
             setTimeout(function() {
-                window.location.href = 'listUser.php';
+                window.location.href = '../back/pages/tables.php';
             }, 2000); // Rediriger après 2 secondes
         </script>
     <?php endif; ?>
@@ -128,8 +128,8 @@ if (
             <input type="number" id="Age" name="Age" style="margin-bottom: 10px;"><br>
             <span id="errorAge" class="error"></span>
 
-            <label for="Function">Function:</label><br>
-            <select id="Function" name="Function" style="margin-bottom: 10px;">
+            <label for="function">function:</label><br>
+            <select id="function" name="function" style="margin-bottom: 10px;">
                 <option value="user">user</option>
                 <option value="admin">admin</option>
                 <option value="prof">prof</option>

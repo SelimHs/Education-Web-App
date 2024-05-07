@@ -24,52 +24,47 @@ if (isset($stats['genres']['Female'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Statistics</title>
-    <style>
-        body {
-            text-align: center;
-        }
-
-        .stats-container {
-            display: flex;
-            justify-content: space-around;
-            margin-top: 20px;
-        }
-        
-        .stats-circle {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            text-align: center;
-            line-height: 150px;
-            font-size: 24px;
-            font-weight: bold;
-            position: relative;
-        }
-
-        .stats-male {
-            background-color: lightblue;
-        }
-
-        .stats-female {
-            background-color: lightpink;
-        }
-
-        .stats-label {
-            position: absolute;
-            bottom: -20px;
-            width: 100%;
-            font-size: 16px;
-            font-weight: normal;
-        }
-    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <h1>Statistics</h1>
-    <div class="stats-container">
-        <div class="stats-circle stats-male"><?= number_format($malePercentage, 2) ?>%</div>
-        <div class="stats-label">Male</div>
-        <div class="stats-circle stats-female"><?= number_format($femalePercentage, 2) ?>%</div>
-        <div class="stats-label">Female</div>
+    <div style="width: 80%; margin: auto;">
+        <canvas id="genreChart"></canvas>
     </div>
+
+    <script>
+        var ctx = document.getElementById('genreChart').getContext('2d');
+        var genreChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Male', 'Female'],
+                datasets: [{
+                    label: 'Gender Distribution',
+                    data: [<?= $malePercentage ?>, <?= $femalePercentage ?>],
+                    backgroundColor: [
+                        'rgba(54, 162, 235, 0.5)',
+                        'rgba(255, 99, 132, 0.5)'
+                    ],
+                    borderColor: [
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 99, 132, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function(value) {
+                                return value + '%';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
 </body>
 </html>
