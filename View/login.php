@@ -28,8 +28,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['email']) && isset($_PO
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="../front/style.css">
-    <link rel="stylesheet" href="../front/login.css">
+    <link rel="stylesheet" href="front/style.css">
+    <link rel="stylesheet" href="front/login.css">
 </head>
 <body>
     <div class="container login-container">
@@ -59,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['email']) && isset($_PO
                 
                 <div class="links">
                     Don't have an account? <a href="register.php">Sign up Now</a><br>
-                    Forgot Password <a href="../View/forgot_password.html">Reset</a>
+                    Forgot Password <a href="View/forgot_password.html">Reset</a>
                 </div>
             </form>
         </div>

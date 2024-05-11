@@ -9,9 +9,10 @@ use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
 require_once __DIR__ . '/../config.php';
-require 'mail/Exception.php';
-require 'mail/PHPMailer.php';
-require 'mail/SMTP.php';
+require_once __DIR__ . '/../View/mail/Exception.php';
+require_once __DIR__ . '/../View/mail/PHPMailer.php';
+require_once __DIR__ . '/../View/mail/SMTP.php';
+
 
 class UtilisateurC {
 
@@ -183,11 +184,11 @@ function loginUser($email, $password) {
                 // Mot de passe correct
                 if ($user['function'] == 'admin') {
                     // Redirigez vers l'interface admin
-                    header("Location: ../back/pages/tables.php");
+                    header("Location: ../View/back/pages/tables.php");
                     exit();
                 } else {
                     // Redirigez vers l'interface utilisateur
-                    header("Location: ../front/index.html");
+                    header("Location: ../View/front/index.html");
                     exit();
                 }
             } else {

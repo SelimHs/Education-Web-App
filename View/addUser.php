@@ -78,7 +78,7 @@ if (
 </head>
 
 <body >
-    <a href="../back/pages/tables.php">Back to list </a>
+    <a href="../View/back/pages/tables.php">Back to list </a>
     <hr>
     <?php if (!empty($error)) : ?>
         <div style="color: red;"><?php echo $error; ?></div>
@@ -87,7 +87,7 @@ if (
         <div style="color: green;"><?php echo $success; ?></div>
         <script>
             setTimeout(function() {
-                window.location.href = '../back/pages/tables.php';
+                window.location.href = '../View/back/pages/tables.php';
             }, 2000); // Rediriger après 2 secondes
         </script>
     <?php endif; ?>

@@ -46,7 +46,7 @@ if (
 
         $userC->updateUser($user, $_POST['id']);
 
-        header('Location:../back/pages/tables.php');
+        header('Location: ../View/back/pages/tables.php');
         exit();
     } else {
         $error = "Missing information";
@@ -65,7 +65,7 @@ if (
 </head>
 
 <body>
-    <button><a href="../back/pages/tables.php">Back to list</a></button>
+    <button><a href=" ../View/back/pages/tables.php">Back to list</a></button>
 
     <hr>
 

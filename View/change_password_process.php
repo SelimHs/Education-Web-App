@@ -13,7 +13,7 @@ if(isset($_GET['code'])) {
         $verifyQuery->execute();
 
         if($verifyQuery->rowCount() == 0) {
-            header("Location: ../front/se_connecter.html");
+            header("Location: front/se_connecter.html");
             exit();
         }
 
@@ -40,7 +40,7 @@ if(isset($_GET['code'])) {
 
     $conn = null;
 } else {
-    header("Location: ../front/se_connecter.html");
+    header("Location: front/se_connecter.html");
     exit();
 }
 ?>
